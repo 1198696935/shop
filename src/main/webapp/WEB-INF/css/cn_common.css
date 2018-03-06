@@ -1,0 +1,64 @@
+
+.cn_header {
+ height:80px;
+ background-color:#fbfbfb;
+ border:1px solid #f3f3f3
+}
+.cn_header .left {
+ height:100%;
+ float:left
+}
+.cn_header .left .logo {
+ display:inline-block;
+ width:125px;
+ height:100%;
+ vertical-align:middle;
+ background:url(/img/logo.png) 50% no-repeat
+}
+.cn_header .left .sub_title {
+ position:relative;
+ display:inline-block;
+ font-size:22px;
+ margin-left:15px;
+ padding-left:20px;
+ color:#666;
+ font-size:18px
+}
+.cn_header .left .sub_title:before {
+ content:" ";
+ position:absolute;
+ top:3px;
+ left:0;
+ height:20px;
+ width:2px;
+ background-color:#e4e4e4
+}
+.cn_header .right {
+ float:right;
+ padding-top:28px
+}
+.footer {
+ background-color:#fff;
+ padding-top:25px;
+ padding-bottom:56px
+}
+.footer .content {
+ text-align:center;
+ font-size:12px;
+ color:#666
+}
+
+.other_name {
+ display:none;
+ padding-left:6px;
+ margin-top:10px;
+ margin-bottom:20px
+}
+.other_name label {
+ display:block;
+ height:30px
+}
+.v_pic {
+ overflow:hidden
+}
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!--引入属性文件 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	
+		<property name="Location" value="classpath:config/jdbc.properties" />
+	</bean>
+	
+	 <bean id="myDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="maxActive" value="10" />
+		<property name="minIdle" value="5" />
+	</bean>
+	 
+	<!-- 配置事务管理器 -->
+	<bean id="myTranscation"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+	
+	
+<!-- 记得引入spring-tx依赖 -->
+<!-- spring-aop/spring-aspects -->
+	<!-- xml方式管理事务 -->
+	<tx:advice id="myAdvice" transaction-manager="myTranscation">
+		<tx:attributes>
+		<!-- 匹配业务类中方法名称 -->
+			<tx:method name="save*" isolation="DEFAULT" propagation="REQUIRED" />
+			<tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED" />
+			<tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED" />
+			<tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED"
+				read-only="true" />
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 配置aop -->
+	<aop:config>
+		<!-- 配置切点：具体哪些方法要增强  -->
+		<aop:pointcut expression="execution(* *..service.*.*(..))"
+			id="myPointcut" />
+		<!-- 配置切面：将增强逻辑作用到切点（通知+切入点）  -->
+		<aop:advisor advice-ref="myAdvice" pointcut-ref="myPointcut" />
+	</aop:config>
+	
+	<!-- 注解 方式管理事务 -->
+	<!--
+		1.开启注解驱动 <tx:annotation-driven transaction-manager="transactionManager"/>
+		2.在service类或者方法上使用注解@Transactional  
+	-->
+
+	<!-- 配置SqlSessionFactory的对象 -->
+	<bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 指定mybatis配置文件位置 -->
+		<property name="configLocation" value="classpath:config/mybatis.xml" />
+	
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+	
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="service" />
+	
+	<!-- 生成dao的代理,使用MapperScannerConfigurer扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="mySqlSessionFactory" /><!-- sqlSessionFactoryBeanName不可改 -->
+		<!-- 指定映射的接口 -->
+		<property name="basePackage" value="dao" />
+	</bean>
+	
+	
+</beans>

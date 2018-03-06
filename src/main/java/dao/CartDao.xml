@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CartDao">
+
+  <insert id="add" parameterType="pojo.Cart">  
+     <!--Here the iid has been defined as a primary key-->  
+     insert into cart(iid,uid,count)  
+     values (#{iid},#{uid},#{count})  
+     on duplicate key update count=count+#{count};
+  </insert> 
+
+	<select id="selectUid" parameterType="int" resultMap="dao.CartDao.cartDetail">
+		select item.*,cart.* from item, cart where item.iid=cart.iid and cart.uid=#{uid}
+	</select>
+	<resultMap id="cartDetail" type="pojo.Cart">
+		<id column="cid" property="cid" />
+		<result column="iid" property="iid" />
+		<result column="uid" property="uid" />
+	    <result column="count" property="count" />
+		<association property="item"  javaType="pojo.Item">
+			<id column="iid" property="iid" />
+			<result column="title" property="title" />
+			<result column="description" property="description" />
+			<result column="picture" property="picture" />
+			<result column="num" property="num" />
+			<result column="tid" property="tid" />
+			<result column="price" property="price" />
+		</association>
+	</resultMap>
+</mapper>
