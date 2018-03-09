@@ -73,12 +73,6 @@
 					align : 'center',
 					width : 120
 				}, {
-					field : 'address',
-					title : '地址',
-					align : 'center',
-					width : 120
-
-				}, {
 					field : 'money',
 					title : '金额',
 					align : 'center',

@@ -56,12 +56,6 @@
 			</div>
 
 			<div class="layui-form-item">
-				<label class="layui-form-label">地址</label>
-				<div class="layui-input-inline">
-					<input id="address" type="text" required="" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
 				<label class="layui-form-label">金额</label>
 				<div class="layui-input-inline">
 					<input id="money" type="text" required=""  class="layui-input">
