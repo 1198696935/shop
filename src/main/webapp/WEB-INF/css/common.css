@@ -216,7 +216,7 @@ i {
 }
 
 .top-nav .nav-about .show_qr a {
-	background-image: url("/img/icon/icon.png");
+	background-image: url("..//img/icon/icon.png");
 	background-position: -33px -564px;
 	background-repeat: no-repeat;
 	padding-left: 15px
@@ -247,7 +247,7 @@ i {
 	*margin-top: 8px;
 	width: 6px;
 	height: 3px;
-	background-image: url("/img/icon/icon.png");
+	background-image: url("../img/icon/icon.png");
 	background-position: -57px -265px;
 	background-repeat: no-repeat
 }
@@ -259,7 +259,7 @@ i {
 	*margin-top: 3px;
 	width: 22px;
 	height: 13px;
-	background-image: url("/img/icon/icon.png");
+	background-image: url("../img/icon/icon.png");
 	background-position: 0 -265px;
 	background-repeat: no-repeat
 }
@@ -350,7 +350,7 @@ i {
 	margin: 0 auto;
 	width: 32px;
 	height: 32px;
-	background-image: url("/img/icon/icon.png");
+	background-image: url("../img/icon/icon.png");
 	background-position: 0 -50px;
 	background-repeat: no-repeat
 }
@@ -382,7 +382,7 @@ i {
 }
 
 .cart .icon-cart {
-	background-image: url("/img/icon/icon_24.png");
+	background-image: url("../img/icon/icon_24.png");
 	background-position: 6px -219px;
 	background-repeat: no-repeat;
 	display: block;
@@ -401,7 +401,7 @@ i {
 	margin: 11px 5px 0 0;
 	width: 7px;
 	height: 10px;
-	background-image: url("/img/icon/icon_24.png");
+	background-image: url("../img/icon/icon_24.png");
 	background-position: 0 -208px;
 	background-repeat: no-repeat
 }
@@ -460,7 +460,7 @@ i {
 	top: 19px;
 	width: 11px;
 	height: 6px;
-	background-image: url("/img/icon/icon_24.png");
+	background-image: url("../img/icon/icon_24.png");
 	background-position: 0 -191px;
 	background-repeat: no-repeat;
 	-webkit-transition: -webkit-transform .5s;
@@ -518,7 +518,7 @@ i {
 	margin: 14px 20px 0 0;
 	width: 7px;
 	height: 10px;
-	background-image: url("/img/icon/icon_24.png");
+	background-image: url("../img/icon/icon_24.png");
 	background-position: 0 -207px;
 	background-repeat: no-repeat
 }
@@ -655,7 +655,7 @@ i {
 	top: 150px;
 	width: 30px;
 	height: 60px;
-	background-image: url("/img/icon/icon.png");
+	background-image: url("../img/icon/icon.png");
 	background-position: 0 0;
 	background-repeat: no-repeat;
 	cursor: pointer;

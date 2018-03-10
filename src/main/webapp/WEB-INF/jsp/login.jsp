@@ -30,7 +30,6 @@
 	background-color: #b6b8b9
 }
 </style>
-<base href="${pageContext.request.contextPath}/">
 </head>
 <body>
 	<div class="cn_header">
@@ -67,14 +66,13 @@
 						class="icon icon_close"></i>
 					</label> <input class="submit" id="submitAccount" value="登录" type="submit">
 
-					<!-- </form> -->
 
 					<div class="options">
 						<div class="left">
 							<a href="" target="_blank" class="set_password">忘记密码</a>
 						</div>
 						<div class="right">
-							<a href="/user/register" target="_blank" class="sign_in">立即注册</a>
+							<a href="user/register" target="_blank" class="sign_in">立即注册</a>
 						</div>
 					</div>
 				</div>
@@ -115,7 +113,8 @@
 		<script type="text/javascript">
 		$(document).ready(function(){
 		var ok1=false;
-		 $("#userName").blur(function() {			
+		 $("#userName").blur(function() {	
+			 
 			ok1=false;
 			$("#warning").html("");
 			$("#warning").hide();
@@ -130,9 +129,10 @@
 				s.html(a).show()
 			}
 			else{
+				
 				$.ajax({
 					type : "POST",
-					url : "/user/findUserName",
+					url : "user/findUserName",
 					data : {
 						username:userName
 					},
@@ -163,7 +163,7 @@
 				var pwd = $("#password").val();
 				$.ajax({
 					type : "POST",
-					url : "/user/login",
+					url : "user/login",
 					data : {
 						userName : userName,
 						pwd : pwd
@@ -171,7 +171,7 @@
 					dataType : "json",
 					success : function(data) {
 						if (data==0)
-							location.href = "/user/home";
+							location.href = "user/home";
 						else if(data==1)
 							{
 							var message = "您的密码错误，请重新输入";
@@ -213,7 +213,7 @@
 		    	  {
 		    		$.ajax({
 		    			type : "POST",
-		    			url : "/user/findPhone",
+		    			url : "user/findPhone",
 		    			data : {
 		    				phone : phone
 		    			},
@@ -248,7 +248,7 @@
 			{
 		$.ajax({
 			type : "POST",
-			url : "/user/getCode",
+			url : "user/getCode",
 			data : {
 				phone : phone
 			},
@@ -281,7 +281,7 @@
 			
 			$.ajax({
 				type : "POST",
-				url : "/user/phoneLogin",
+				url : "user/phoneLogin",
 				data : {
 					code : sms_code,
 					phone:phone
@@ -289,7 +289,7 @@
 				dataType : "json",
 				success : function(data) {		
 				 if(data==1)				 		
-						 location.href = "/user/home";			
+						 location.href = "user/home";			
 				 if(data==2)
 					{
 					 var message="验证码错误";

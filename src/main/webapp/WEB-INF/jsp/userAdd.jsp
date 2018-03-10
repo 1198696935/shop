@@ -73,7 +73,7 @@
 				phone : $("#phone").val(),
 			});
 			$.ajax({
-				url : "/user/add",
+				url : "user/add",
 				type : "POST",
 				data : formData,
 				dataType : "json",

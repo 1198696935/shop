@@ -87,7 +87,7 @@ layui.use([ 'form', 'layer' ], function() {
 			 money : $("#money").val()
 		});
 		$.ajax({
-			url : "/user/add",
+			url : "user/add",
 			type : "POST",
 			data : formData,
 			dataType : "json",
@@ -112,9 +112,5 @@ layui.use([ 'form', 'layer' ], function() {
 		return false;		
 	});     
 });
-</script>
-<script>
-
-/*  $('input[value="女"]').prop("checked","true");  */
 </script>
 </html>

@@ -31,7 +31,7 @@
 			layui.use('form', function() {
 				var form = layui.form;
 				$.ajax({
-					url : '/type/selectAll',
+					url : 'type/selectAll',
 					type : 'post',
 					data : {
 						'pid' : 0
@@ -54,7 +54,7 @@
 				form.on('select(p)', function(data) {
 					var bid = data.value;
 					$.ajax({
-						url : '/type/selectAll',
+						url : 'type/selectAll',
 						type : 'post',
 						data : {
 							'pid' : bid

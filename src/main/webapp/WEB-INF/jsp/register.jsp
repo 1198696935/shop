@@ -154,7 +154,7 @@
 		} else {
 			$.ajax({
 				type : "POST",
-				url : "/user/findPhone",
+				url : "user/findPhone",
 				data : {
 					phone : str
 				},
@@ -183,7 +183,7 @@
 		var phone=$("#signUpTel").val();
 		$.ajax({
 			type : "POST",
-			url : "/user/getCode",
+			url : "user/getCode",
 			data : {
 				phone : phone
 			},
@@ -218,7 +218,7 @@
 		$("#codeLabel").html("");
 		$.ajax({
 			type : "POST",
-			url : "/user/phoneLogin",
+			url : "user/phoneLogin",
 			data : {
 				code :code,
 				phone:phone
@@ -257,7 +257,7 @@
 			else{
 				$.ajax({
 					type : "POST",
-					url : "/user/findUserName",
+					url : "user/findUserName",
 					data : {
 						username:userName
 					},
@@ -306,7 +306,7 @@
 					
 				$.ajax({
 					type : "POST",
-					url : "/user/add",
+					url : "user/add",
 					data : {
 						username : userName,
 						pwd : pwd,
@@ -316,7 +316,7 @@
 					dataType : "json",
 					success : function(data) {
 						if (data.msg = '1')
-							location.href = "/admin";
+							location.href = "admin";
 						else
 							{					
 							 var layer = layui.layer;			

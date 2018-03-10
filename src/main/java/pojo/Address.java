@@ -64,4 +64,8 @@ public class Address {
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
+	
+    public String toString(){
+        return province + "" + city+""+area+""+other+""+user+""+phone;
+    }
 }

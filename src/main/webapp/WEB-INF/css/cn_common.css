@@ -13,7 +13,7 @@
  width:125px;
  height:100%;
  vertical-align:middle;
- background:url(/img/logo.png) 50% no-repeat
+ background:url(../img/logo.png) 50% no-repeat
 }
 .cn_header .left .sub_title {
  position:relative;

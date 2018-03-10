@@ -26,7 +26,7 @@
 	<script src="js/jquery-3.1.1.min.js"></script>
 	<script src="js/jquery.backstretch.js"></script>
 	<script>
-		$.backstretch([ "img/1.jpg", "img/2.jpg" ], {
+		$.backstretch([ "img/bg.jpg", "img/adminbg.jpg" ], {
 			fade : 750,
 			duration : 3000,
 			preload : 0,
@@ -48,7 +48,7 @@
 				var pwd = $("#password").val();
 				$.ajax({
 					type : "POST",
-					url : "/login",
+					url : "login",
 					data : {
 						adminName : adminName,
 						pwd : pwd
@@ -56,7 +56,7 @@
 					dataType : "json",
 					success : function(data) {
 						if (data.msg = '1')
-							location.href = "/admin";
+							location.href = "admin";
 						else
 							alert("登录失败");
 					}

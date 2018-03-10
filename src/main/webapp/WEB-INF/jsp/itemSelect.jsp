@@ -76,7 +76,7 @@ $(function(){
             onPageClicked: function(obj, pageIndex) {  
                 alert((pageIndex+1)+'页');  
                 page=pageIndex+1;
-               location.href="/item/selectTitle?title=${title}&page="+page;
+               location.href="item/selectTitle?title=${title}&page="+page;
             }  
         });  
     }  
@@ -89,36 +89,32 @@ $(function(){
 	<div class="top-nav">
 		<div class="wrap clearfix">
 			<div class="fl clearfix nav-about">
-				<span>妈妈网</a>
+				<span>妈妈网
 				</span> <span class="sp">|</span> <span>客服热线：18818429757</span>
 			</div>
 			<div class="login-info fr clearfix">
-
 				<div class="not-login clearfix">
 					<span class="username show_qr"> <c:choose>
 							<c:when test="${user!=null}"> 您好，${user.username} 
-							<i class="icon-down"></i></span> <span> <a href="/user/logout"
+							<i class="icon-down"></i></span> <span> <a href="user/logout"
 						title="退出">退出</a>
 					</span> <span class="sp">|</span> <span class="my-order show_qr"> <a
-						href="#" target="_blank">我的订单<i class="icon-down"></i></a>
+						href="user/personal">个人中心<i class="icon-down"></i></a>
 					</span>  
 					</c:when>
 					<c:otherwise>
-						<!-- <div class="had-login clearfix"> -->
 						<span>Hi,欢迎来到妈妈网 !</span>
 						<span class="sp">|</span>
-						<span><a href="/user/userLogin" title="登录">登录</a></span>
+						<span><a href="user/userLogin" title="登录">登录</a></span>
 						<span class="sp">|</span>
-						<span><a href="/user/register" class="reg">免费注册</a></span>
-						<span class="sp">|</span>
-						<span><a href="#" target="_blank">我的订单</a></span>
-						<!-- 	</div> -->
+						<span><a href="user/register" class="reg">免费注册</a></span>
 					</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<div class="logo-cart-box">
 		<div class="wrap clearfix">
 			<a class="logo fl"> <img src="img/icon/logo.png" width="152"
@@ -152,7 +148,7 @@ $(function(){
 							</div>
 							<div id="submenu-0" class="popover">
 								<div class="link-list">
-									<a href="/item/tid?tid=3" target="_blank" class="link-item">
+									<a href="item/tid?tid=3" target="_blank" class="link-item">
 										<div class="pic-holder">
 											<img src="img/item/milk.jpg" title="小树熊，妈网官方商城" width="58"
 												height="58">
@@ -204,19 +200,12 @@ $(function(){
 							</div>
 						</li>
 					</ul></li>
-				<li class="nav-item"><a class="nav-url" href="/user/home">首页</a></li>
+				<li class="nav-item"><a class="nav-url" href="user/home">首页</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="wrap">
 
-		<div class="breadcrumbs clearfix">
-			<span class="icon-xsx"></span> 当前位置: <a>首页</a>
-			<code>&gt;</code>
-			<a>妈妈良品</a>
-			<code>&gt;</code>
-			<a>婴装/童装/棉品</a>
-		</div>
 		<div class="countdown-mod-2">
 			<dl class="sort-wrap">
 				<dt>排序:</dt>
@@ -242,7 +231,7 @@ $(function(){
 		</div>
 		<ul class="category-list clearfix mb-25">
 			<c:forEach items="${itemList}" var="item">
-				<li class="mod-item"><a href="/item/selectIid?iid=${item.iid}"
+				<li class="mod-item"><a href="item/selectIid?iid=${item.iid}"
 					;
 				class="goods-pic-title mb-10" target="_blank">
 						<div class="pic-holder mb-10">
@@ -308,14 +297,14 @@ $(function(){
 	<script>
 		$("#searchBtn").click(function() {
 			var title = $("#searchInput").val();
-			location.href = "/item/selectTitle?title=" + title;
+			location.href = "item/selectTitle?title=" + title;
 			$("#searchInput").val("");
 		});
 
 		$(".cart-wraper").click(function() {
 			var test = ${user != null};
 			if (test) {
-				location.href = "/cart/cart?uid=${user.uid}";
+				location.href = "cart/cart?uid=${user.uid}";
 			} else {
 				layer.alert('请先登录', {
 					icon : 6

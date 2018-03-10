@@ -68,7 +68,7 @@
 		layui.use('form', function() {
 			var form = layui.form;
 			$.ajax({
-				url : '/type/selectAll',
+				url : 'type/selectAll',
 				type : 'post',
 				data : {
 					'pid' : 0
@@ -98,7 +98,7 @@
 												var bid = data.value;
 												$
 														.ajax({
-															url : '/type/selectAll',
+															url : 'type/selectAll',
 															type : 'post',
 															data : {
 																'pid' : bid
@@ -127,7 +127,7 @@
 			var $ = layui.jquery, upload = layui.upload; 
 			upload.render({
 				elem : '#picture',
-				url : '/item/pictureUpload',
+				url : 'item/pictureUpload',
 				accept : 'file',
 				done : function(res) {	
 					/* if (res == 1)
@@ -145,7 +145,7 @@
 	            var tid=$("#b").val();
 			
 			$.ajax({
-				url:'/item/add',
+				url:'item/add',
 				type:'post',
 				data:{
 					'title':title,

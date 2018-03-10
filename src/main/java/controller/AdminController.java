@@ -27,9 +27,9 @@ public class AdminController {
 		return json;
 	}
 
-	@RequestMapping("/NewFile")
-	public String NewFile() {
-		return "NewFile";
+	@RequestMapping("/adminLogin")
+	public String adminLogin() {
+		return "adminLogin";
 	}
 	
 	@RequestMapping("/admin")
@@ -37,13 +37,15 @@ public class AdminController {
 		return "main";
 	}
 	
-	@RequestMapping("/test")
-	public String test() {
-		return "test";
-	}
 
 	@RequestMapping("/welcome")
 	public String welcome() {
 		return "welcome";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		 session.removeAttribute("adminName");  
+		return "login";
 	}
 }

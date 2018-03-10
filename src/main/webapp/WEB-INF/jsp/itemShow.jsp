@@ -71,39 +71,35 @@
 	<div class="top-nav">
 		<div class="wrap clearfix">
 			<div class="fl clearfix nav-about">
-				<span>妈妈网</a>
+				<span>妈妈网
 				</span> <span class="sp">|</span> <span>客服热线：18818429757</span>
 			</div>
 			<div class="login-info fr clearfix">
-
 				<div class="not-login clearfix">
 					<span class="username show_qr"> <c:choose>
 							<c:when test="${user!=null}"> 您好，${user.username} 
-							<i class="icon-down"></i></span> <span> <a href="/user/logout"
+							<i class="icon-down"></i></span> <span> <a href="user/logout"
 						title="退出">退出</a>
 					</span> <span class="sp">|</span> <span class="my-order show_qr"> <a
-						href="#" target="_blank">我的订单<i class="icon-down"></i></a>
+						href="user/personal">个人中心<i class="icon-down"></i></a>
 					</span>  
 					</c:when>
 					<c:otherwise>
-						<!-- <div class="had-login clearfix"> -->
 						<span>Hi,欢迎来到妈妈网 !</span>
 						<span class="sp">|</span>
-						<span><a href="/user/userLogin" title="登录">登录</a></span>
+						<span><a href="user/userLogin" title="登录">登录</a></span>
 						<span class="sp">|</span>
-						<span><a href="/user/register" class="reg">免费注册</a></span>
-						<span class="sp">|</span>
-						<span><a href="#" target="_blank">我的订单</a></span>
-						<!-- 	</div> -->
+						<span><a href="user/register" class="reg">免费注册</a></span>
 					</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<div class="logo-cart-box">
 		<div class="wrap clearfix">
-			<a href="/user/home" class="logo fl"> <img
+			<a href="user/home" class="logo fl"> <img
 				src="img/icon/logo.png" width="152" height="65" title="小树熊，妈网官方商城">
 			</a>
 			<div class="safety-cart fr clearfix">
@@ -186,19 +182,20 @@
 							</div>
 						</li>
 					</ul></li>
-				<li class="nav-item"><a class="nav-url" href="/user/home">首页</a></li>
+				<li class="nav-item"><a class="nav-url" href="user/home">首页</a></li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="g-content">
-
+        <br>
 		<div class="goods-detail g-area">
 			<div class="goods-info clearfix">
 
 				<div class="focus-picture fl">
+				<br>
 					<div class="pic-holder" id="gallery">
-						<img style="display: block;"> <img id="productPic"
+						<img style="display: block;padding-left:20px;"> <img id="productPic"
 							src="${item.picture}">
 						<div class="video-wrap" id="J_video"></div>
 					</div>
@@ -425,7 +422,7 @@
 				var count = parseInt($("#J_count").val());
 				$.ajax({
 					type : "POST",
-					url : "/cart/add",
+					url : "cart/add",
 					data : {
 						'iid' : iid,
 						'uid' : uid,
@@ -442,7 +439,7 @@
 								btn : [ '去购物车结算', '再逛逛' ],
 								yes : function(index) {
 									layer.close(index);
-									location.href = "/cart/cart?uid=${user.uid}";
+									location.href = "cart/cart?uid=${user.uid}";
 								}
 							});
 						}
@@ -460,13 +457,9 @@
 	</script>
 	<script>
 		$(".cart-wraper").click(function() {
-			var test = $
-			{
-				user != null
-			}
-			;
+			var test = ${user != null};
 			if (test) {
-				location.href = "/cart/cart?uid=${user.uid}";
+				location.href = "cart/cart?uid=${user.uid}";
 			} else {
 				layer.alert('请先登录', {
 					icon : 6
@@ -474,7 +467,7 @@
 			}
 		});
 	</script>
-<!-- 	<script src="lib/layui/layui.js" charset="utf-8"></script> -->
+
 	<script>
 	
 			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块

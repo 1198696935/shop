@@ -39,41 +39,40 @@
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'user/findAll' //数据接口 
+				url : 'address/selectAll?uid=${user.uid}' //数据接口 
 				,
 				cols : [ [ //表头
 				{
 					type : 'checkbox',
 					fixed : 'left'
 				}, {
-					field : 'uid',
+					field : 'aid',
 					title : 'ID',
 					align : 'center',
 					width : 120,
 					sort : true
 				}, {
-					field : 'username',
+					field : 'user',
 					title : '用户名',
 					align : 'center',
 					width : 120
 				}, {
-					field : 'pwd',
-					title : '密码',
+					field : '',
+					title : 'phone',
 					align : 'center',
 					width : 120
 				}, {
-					field : 'sex',
+					field : 'province',
 					title : '性别',
 					width : 120,
 					align : 'center',
-					templet : '#sexTpl'
 				}, {
-					field : 'phone',
-					title : '手机号码',
+					field : 'city',
+					title : '城市',
 					align : 'center',
 					width : 120
 				}, {
-					field : 'money',
+					field : '区',
 					title : '金额',
 					align : 'center',
 					width : 120

@@ -434,7 +434,7 @@ input::-webkit-input-placeholder {
 .icon_user {
 	width: 20px;
 	height: 20px;
-	background: url(/img/icon/user.png) no-repeat 50%;
+	background: url(../img/icon/user.png) no-repeat 50%;
 	background-size: contain;
 	vertical-align: -2px
 }
@@ -442,7 +442,7 @@ input::-webkit-input-placeholder {
 .icon_password {
 	width: 20px;
 	height: 20px;
-	background: url(/img/icon/pwd.png) no-repeat 50%;
+	background: url(../img/icon/pwd.png) no-repeat 50%;
 	background-size: contain;
 	vertical-align: -2px
 }
@@ -450,14 +450,14 @@ input::-webkit-input-placeholder {
 .icon_tel {
 	width: 20px;
 	height: 20px;
-	background: url(/img/icon/phone.png) no-repeat 50%;
+	background: url(../img/icon/phone.png) no-repeat 50%;
 	background-size: contain;
 	vertical-align: -2px
 }
 .icon_email {
 	width: 20px;
 	height: 20px;
-	background: url(/img/icon/code.png) no-repeat 50%;
+	background: url(../img/icon/code.png) no-repeat 50%;
 	background-size: contain;
 	vertical-align: -2px
 }

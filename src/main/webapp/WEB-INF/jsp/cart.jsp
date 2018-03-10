@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<head>
 <base href="${pageContext.request.contextPath}/">
 <title>我的购物车</title>
 <link rel="stylesheet" href="css/common.css">
@@ -16,28 +17,25 @@
 	<div class="top-nav">
 		<div class="wrap clearfix">
 			<div class="fl clearfix nav-about">
-				<span>妈妈网</a>
+				<span>妈妈网
 				</span> <span class="sp">|</span> <span>客服热线：18818429757</span>
 			</div>
 			<div class="login-info fr clearfix">
-
 				<div class="not-login clearfix">
 					<span class="username show_qr"> <c:choose>
 							<c:when test="${user!=null}"> 您好，${user.username} 
-							<i class="icon-down"></i></span> <span> <a href="/user/logout"
+							<i class="icon-down"></i></span> <span> <a href="user/logout"
 						title="退出">退出</a>
 					</span> <span class="sp">|</span> <span class="my-order show_qr"> <a
-						href="#" target="_blank">我的订单<i class="icon-down"></i></a>
+						href="user/personal">个人中心<i class="icon-down"></i></a>
 					</span>  
 					</c:when>
 					<c:otherwise>
 						<span>Hi,欢迎来到妈妈网 !</span>
 						<span class="sp">|</span>
-						<span><a href="/user/userLogin" title="登录">登录</a></span>
+						<span><a href="user/userLogin" title="登录">登录</a></span>
 						<span class="sp">|</span>
-						<span><a href="/user/register" class="reg">免费注册</a></span>
-						<span class="sp">|</span>
-						<span><a href="#" target="_blank">我的订单</a></span>
+						<span><a href="user/register" class="reg">免费注册</a></span>
 					</c:otherwise>
 					</c:choose>
 				</div>
@@ -88,7 +86,7 @@
 			</div>
 			<!-- 购物车列表 -->
 			<c:forEach items="${cartList}" var="cart">
-				<div class="row goods-row clearfix" id="107512" value="123456">
+				<div class="row goods-row clearfix">
 					<div class="col col-1">
 						<input type="checkbox" class="checkbox gc">
 					</div>
@@ -112,7 +110,7 @@
 						<div class="clearfix mod-limit ">
 							<div class="clearfix">
 								<a class="reduce limit-control fl">-</a> <input type="text"
-									class="limit-input fl" data-limit="50" data-cid="5432755"
+									class="limit-input fl" data-limit="50" 
 									readonly="readonly" value="${cart.count}"><a
 									class="increase limit-control fl">+</a>
 							</div>
@@ -156,9 +154,10 @@
 			<div class="common-box address-box">
 				<div class="hd"><span class="tit">选择收货地址</span></div>
 				<div class="bd">
+				<div id="addressList">
 					<ul class="address-list clearfix">
 						<li class="">
-							<div class="address-list-bd" address="521497">
+							<div class="address-list-bd" >
 								<i class="clk"></i>
 								<div class="hdbox">
 									<a href="javascript:;" target="_self" class="" style="display: none;">设为默认地址</a>
@@ -169,12 +168,12 @@
 									<p class="address-info"><span>广东省</span><span>广州市</span><span>天河区</span></p>
 									<p>天上人间</p>
 								</div>
-								<a href="javascript:;" class="change-btn" data-address="521497" style="display: none;">修改</a>
+								<a href="javascript:;" class="change-btn"  style="display: none;">修改</a>
 							</div>
 						</li>
 									
 						<li class="selected">
-							<div class="address-list-bd" address="529023">
+							<div class="address-list-bd">
 								<i class="clk"></i>
 								<div class="hdbox">
 									<a href="javascript:;" target="_self" style="display: block;" class="default">默认地址</a>
@@ -185,12 +184,13 @@
 									<p class="address-info"><span>广东省</span><span>东莞市</span><span>黄江镇</span></p>
 									<p>1111111</p>
 								</div>
-								<a href="javascript:;" class="change-btn" data-address="529023" style="display: inline;">修改</a>
+								<a href="javascript:;" class="change-btn"  style="display: inline;">修改</a>
 							</div>
 						</li>
 					</ul>
+					</div>
 					<div class="address-lit-btns clearfix">
-						<a href="javascript:;" class="add-address" data-addstyle="1">新增收货地址</a>
+						<a href="javascript:;" class="add-address">新增收货地址</a>
 					</div>
 				</div>
 			</div>
@@ -268,8 +268,9 @@
 
 				$index.text($step.getIndex());
 				$("#cartBtn").on("click", function() {
+		             getAddress();
 					$step.nextStep();
-					$index.text($step.getIndex());
+					$index.text($step.getIndex());	
 					$("#cart").hide();
 					$("#balance").show();
 				});
@@ -395,6 +396,48 @@
 					
 				}
 			</script>
+			
+		<script>
+			/* 异步请求获取地址 */
+			function getAddress(){
+			var uid = "${user.uid}";
+			alert(uid);
+			$.ajax({
+			type : "POST",
+			url : "address/selectAll",
+			data:{
+				'uid':uid
+			},
+			dataType : "json",
+			success : function(data) {
+				$("#addressList").html("");
+				var context='<ul class="address-list clearfix">';
+				 $.each(data,function(i, address) { 
+				var temp=`
+				<li class="">
+				<div class="address-list-bd">
+					<i class="clk"></i>
+					<div class="hdbox">
+						<a href="javascript:;" target="_self" class="" style="display: none;">设为默认地址</a>
+						<span class="name"> `+address.user+`</span>
+						<span>`+address.phone+`</span>
+					</div>
+					<div class="bdbox">
+						<p class="address-info"><span>`+address.province+`</span><span>`+address.city+`</span><span>`+address.area+`</span></p>
+						<p>`+address.other+`</p>
+					</div>
+					<a href="javascript:;" class="change-btn" style="display: none;">修改</a>
+				</div>
+			</li>`;
+			       context=context+temp;
+				 });
+				 context=context+'</ul>';
+		 $("#addressList").append(context);			
+				}
+			
+		});	
+			}
+	</script>
 
 </body>
 

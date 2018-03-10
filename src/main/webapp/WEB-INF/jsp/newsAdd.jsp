@@ -59,7 +59,7 @@
 			var $ = layui.jquery, upload = layui.upload;
 			upload.render({
 				elem : '#picture',
-				url : '/news/pictureUpload',
+				url : 'news/pictureUpload',
 				accept : 'file',
 				done : function(res) {
 					if (res == 1)
@@ -72,7 +72,7 @@
 		$("#add").click(function() {
 			alert("ddd");
 			$.ajax({
-				url : '/news/add',
+				url : 'news/add',
 				type : 'post',
 				data : {
 					"title" : $("#ntitle").val(),

@@ -72,6 +72,14 @@ public class UserController {
 		return "userEdit";
 	}
 
+	
+	@RequestMapping("/personal")
+	public String personal() {
+
+		return "personal";
+	}
+
+	
 	@RequestMapping("/add")
 	@ResponseBody
 	public int add(HttpSession session, String username, String pwd, String sex, String phone) throws Exception {
@@ -153,6 +161,7 @@ public class UserController {
 	@RequestMapping("/findUserName")
 	@ResponseBody
 	public int findUserName(String username) throws Exception {
+		System.out.println("dddd");
 		if (userService.findUserName(username))
 		{
 			return 0;
