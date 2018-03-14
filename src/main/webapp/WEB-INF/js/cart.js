@@ -156,6 +156,7 @@ $(".address-box").on("mouseover",".address-list li",function(){
 });
 $(".address-box").on("click",".address-list li",function(event){
     var cur = $(this).addClass("selected").siblings("li");
+    $(this).addClass("selected").siblings("li").removeClass("selected")
     cur.removeClass("selected");
     cur.find(".hdbox a").hide();
     cur.find(".change-btn").hide();

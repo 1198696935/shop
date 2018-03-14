@@ -215,7 +215,6 @@ public class UserController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		 session.removeAttribute("user");  
-		 System.out.println("logout");
 		return "login";
 	}
 	@RequestMapping("/lun")

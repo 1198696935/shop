@@ -39,7 +39,9 @@ public class AddressController {
 	
 	@RequestMapping("/findAll")
 	@ResponseBody
-	public Pager<Address> findAll(Model model,int uid, int page, int limit, String keyword) throws Exception {
+	public Pager<Address> findAll(Model model,int page, int limit, String keyword) throws Exception {
+		Integer uid;
+		uid=83;
 		ArrayList<Address> addressList = addressService.findAll(uid,page, limit, keyword);
 		PageInfo<Address> pageInfo = new PageInfo<Address>(addressList);
 		// 计算总行数

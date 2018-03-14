@@ -39,7 +39,7 @@
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'address/selectAll?uid=${user.uid}' //数据接口 
+				url : 'address/findAll' //数据接口 
 				,
 				cols : [ [ //表头
 				{
@@ -57,13 +57,13 @@
 					align : 'center',
 					width : 120
 				}, {
-					field : '',
-					title : 'phone',
+					field : 'phone',
+					title : '手机',
 					align : 'center',
 					width : 120
 				}, {
 					field : 'province',
-					title : '性别',
+					title : '省份',
 					width : 120,
 					align : 'center',
 				}, {
@@ -72,11 +72,17 @@
 					align : 'center',
 					width : 120
 				}, {
-					field : '区',
-					title : '金额',
+					field : 'area',
+					title : '区',
 					align : 'center',
 					width : 120
 				}, {
+					field : 'other',
+					title : '详细地址',
+					align : 'center',
+					width : 240
+				},
+				   {
 					fixed : 'right',
 					title : '操作',
 					align : 'center',

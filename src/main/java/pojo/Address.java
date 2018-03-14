@@ -3,9 +3,7 @@ package pojo;
 public class Address {
     private Integer defaultAddress;
     private Integer aid;
-    private String province;
-    private String city;
-    private String area;
+    private String name;
     private String other;
     private String user;
     private String phone;
@@ -22,24 +20,7 @@ public class Address {
 	public void setAid(Integer aid) {
 		this.aid = aid;
 	}
-	public String getProvince() {
-		return province;
-	}
-	public void setProvince(String province) {
-		this.province = province;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
-	}
+
 	public String getOther() {
 		return other;
 	}
@@ -66,6 +47,12 @@ public class Address {
 	}
 	
     public String toString(){
-        return province + "" + city+""+area+""+other+""+user+""+phone;
+        return name+other+""+user+""+phone;
     }
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 }

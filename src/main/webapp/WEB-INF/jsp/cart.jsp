@@ -140,7 +140,7 @@
 					<label for="select_all_2">全选</label>
 				</div>
 				<div class="fr total-box clearfix">
-					<span class="text">已选商品 : </span> <span id="total-count" class="total-count">
+					<span class="text">已选商品 : </span> <span  class="total-count">
 						0 </span> <span class="text">件 合计 ( 不含邮费 ) :￥ </span> <span
 						class="total-price"> 0</span> <a id="cartBtn"
 						class="go-to-pay btn-go">去结算</a>
@@ -156,64 +156,33 @@
 				<div class="bd">
 				<div id="addressList">
 					<ul class="address-list clearfix">
-						<li class="">
-							<div class="address-list-bd" >
-								<i class="clk"></i>
-								<div class="hdbox">
-									<a href="javascript:;" target="_self" class="" style="display: none;">设为默认地址</a>
-									<span class="name">陈晓波</span>
-									<span>18818429757</span>
-								</div>
-								<div class="bdbox">
-									<p class="address-info"><span>广东省</span><span>广州市</span><span>天河区</span></p>
-									<p>天上人间</p>
-								</div>
-								<a href="javascript:;" class="change-btn"  style="display: none;">修改</a>
-							</div>
-						</li>
-									
-						<li class="selected">
-							<div class="address-list-bd">
-								<i class="clk"></i>
-								<div class="hdbox">
-									<a href="javascript:;" target="_self" style="display: block;" class="default">默认地址</a>
-									<span class="name">陈晓芬</span>
-									<span>18818429757</span>
-								</div>
-								<div class="bdbox">
-									<p class="address-info"><span>广东省</span><span>东莞市</span><span>黄江镇</span></p>
-									<p>1111111</p>
-								</div>
-								<a href="javascript:;" class="change-btn"  style="display: inline;">修改</a>
-							</div>
-						</li>
+					
 					</ul>
 					</div>
 					<div class="address-lit-btns clearfix">
-						<a href="javascript:;" class="add-address">新增收货地址</a>
+						<a href="user/personal" class="add-address" >管理收货地址</a> 
 					</div>
 				</div>
 			</div>
 			<input type="hidden" name="address_id" id="address_id" value="529023">
 			
 			<div class="common-box cost-box">
-				<div class="hd"><span class="tit">费用详情</span></div>
+				<div class="hd"><span class="tit">费用详情</span> &nbsp;&nbsp;&nbsp;&nbsp;<a id="prevBtn">返回上一步</a></div>
 				<div class="bd clearfix">
 					<div class="cost-info fr">
-						<p>共<span class="goods-nums red total-count">0</span>件商品，商品金额：<i class="cost-box-about">¥ 22.9</i></p>
-						<p>优惠金额：<i class="cost-box-about" id="discount_val"> - ¥ 0</i></p>
-						<p>运费：<i class="cost-box-about" id="shipping_fee_val"> + ¥ 10</i></p>
-						<p>总金额：<i class="cost-box-about red" id="total1"> ￥32.90</i></p>
+						<p>共<span class="goods-nums red total-count">0</span>件商品，商品金额：<i class="cost-box-about"><label class="total-price">0</label></i></p>
+						<p>运费：<i class="cost-box-about"><span>￥</span><label id="expressPrice"></label></i></p>
+						<p>总金额：<i class="cost-box-about red"><span>￥</span><label id="finalPrice">0</label></i></p>
 					</div>
 				</div>
 				<div class="bd">
 					<div class="cost-all clearfix">
 						<button class="cost-submit-btn fr" id="orderBtn">提交订单</button>
-						<div class="cost-all-price fr">应付金额：<span id="total2">￥32.90</span></div>
 					</div>
+					
 					<div class="post-goods-address">
-						<p id="receiver-name">寄送至： 陈晓芬 18818429757</p>
-						<p id="receiver-address">广东省东莞市黄江镇 1111111</p>
+						<p id="receiver-name">寄送至：<span id="userNameLabel"></span>&nbsp;<span  id="phoneLabel"></span></p>
+						<p id="receiver-address"><span id="nameLabel"></span><span id=otherLabel></span></p>
 					</div>
 				</div>
 			</div>
@@ -268,7 +237,27 @@
 
 				$index.text($step.getIndex());
 				$("#cartBtn").on("click", function() {
-		             getAddress();
+		             //异步获取地址
+					getAddress();
+		             //计算邮费
+		             alert($(".cost-box-about").find(".total-price").text());
+		            var totalPrice=parseFloat($(".cost-box-about").find(".total-price").text());
+		            alert("totalPrice"+totalPrice);
+		            if(totalPrice<88&&totalPrice>0)
+		            	{
+		            	    $("#expressPrice").text('10');
+		            	}
+		            else
+		            	{
+		            	    $("#expressPrice").text('0');
+		            	}
+		             //得出最终价格
+		             var expressPrice=parseFloat($("#expressPrice").text());
+		            
+		             alert("expressPrice"+expressPrice);
+		             var finalPrice=totalPrice-expressPrice;
+		             alert(finalPrice);
+		             $("#finalPrice").text(finalPrice);
 					$step.nextStep();
 					$index.text($step.getIndex());	
 					$("#cart").hide();
@@ -287,6 +276,8 @@
 				$("#prevBtn").on("click", function() {
 					$step.prevStep();
 					$index.text($step.getIndex());
+					$("#cart").show();
+					$("#balance").hide();
 				});
 
 				$("#nextBtn").on("click", function() {
@@ -411,34 +402,63 @@
 			dataType : "json",
 			success : function(data) {
 				$("#addressList").html("");
-				var context='<ul class="address-list clearfix">';
+				var context='<ul  class="address-list clearfix">';
 				 $.each(data,function(i, address) { 
-				var temp=`
-				<li class="">
+				var temp=`<li  onclick="addressLabel()">
 				<div class="address-list-bd">
 					<i class="clk"></i>
 					<div class="hdbox">
-						<a href="javascript:;" target="_self" class="" style="display: none;">设为默认地址</a>
-						<span class="name"> `+address.user+`</span>
-						<span>`+address.phone+`</span>
+						<span class="userName"> `+address.user+`</span>
+						<span class="phone">`+address.phone+`</span>
 					</div>
 					<div class="bdbox">
-						<p class="address-info"><span>`+address.province+`</span><span>`+address.city+`</span><span>`+address.area+`</span></p>
-						<p>`+address.other+`</p>
+					 <p class="address-info addressName">`+address.name+`</p> 
+						<p class="other">`+address.other+`</p>
 					</div>
-					<a href="javascript:;" class="change-btn" style="display: none;">修改</a>
 				</div>
 			</li>`;
 			       context=context+temp;
 				 });
 				 context=context+'</ul>';
-		 $("#addressList").append(context);			
-				}
+		      $("#addressList").append(context);			
+			}
 			
 		});	
-			}
+	}		
 	</script>
 
+  <script>
+  $(".address-box").on("click",".address-list li",function(event){
+	  var name =$(this).find(".addressName").text();
+	  var other=$(this).find(".other").text();
+	  var username=$(this).find(".userName").text();
+	  var phone=$(this).find(".phone").text();
+	  $("#nameLabel").text(name);
+	  $("#otherLabel").text(other);
+	  $("#userNameLabel").text(username);
+	  $("#phoneLabel").text(phone);
+	  alert(name+other);
+	});
+  </script>
+  
+  <script>
+  function getOrder()
+  {
+	  
+	  $.ajax({
+			type : "POST",
+			url : "address/selectAll",
+			data:{
+				'uid':uid
+			},
+			dataType : "json",
+			success : function(data) {
+			}
+			});
+  }
+  
+  </script>
+  
 </body>
 
 </html>
