@@ -43,7 +43,6 @@ public class Order {
 		this.payment = payment;
 	}
 	
-	
 
 	public String getPhone() {
 		return phone;
