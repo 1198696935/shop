@@ -105,7 +105,7 @@
 	margin-top: 34px;
 	width: 14px;
 	height: 14px;
-	background-image: url("/img/icon/icon.png");
+	background-image: url("../img/icon/icon.png");
 	background-position: -137px -156px;
 	background-repeat: no-repeat;
 	cursor: pointer

@@ -8,31 +8,17 @@
 <link rel="stylesheet" href="lib/layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/xadmin.css">
-
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/xadmin.js"></script>
-
-
-    <link rel="stylesheet" href="layui/css/layui.css" /> 
-    <script type="text/javascript" src="layui/layui.js"></script> 
-    <script type="text/javascript" src="assets/data.js"></script>
-    <script type="text/javascript" src="assets/province.js"></script>
-    <script type="text/javascript">
-        var defaults = {
-            s1: 'provid',
-            s2: 'cityid',
-            s3: 'areaid',
-            v1: null,
-            v2: null,
-            v3: null
-        };
-
-    </script>
 </head>
 <body>
 	<div class="x-body">
 		<xblock>
+		<button id="delSome" class="layui-btn layui-btn-danger"
+			data-type="getCheckData">
+			<i class="layui-icon"></i>批量
+		</button>
 		<button class="layui-btn" onclick="add();">
 			<i class="layui-icon"></i>添加
 		</button>
@@ -53,45 +39,44 @@
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'address/findAll' //数据接口 
+				url : 'order/selectUid' //数据接口 
 				,
 				cols : [ [ //表头
 				{
 					type : 'checkbox',
 					fixed : 'left'
 				}, {
-					field : 'aid',
-					title : 'ID',
+					field : 'oid',
+					title : '订单号',
 					align : 'center',
 					width : 120,
 					sort : true
 				}, {
-					field : 'user',
-					title : '用户名',
+					field : 'create_time',
+					title : '创建时间',
 					align : 'center',
 					width : 120
 				}, {
-					field : 'phone',
-					title : '手机',
+					field : 'payment',
+					title : '金额',
 					align : 'center',
 					width : 120
 				}, {
-					field : 'area',
-					title : '地区',
+					field : 'username',
+					title : '收货人',
+					width : 120,
+					align : 'center',
+					templet : '#sexTpl'
+				}, {
+					field : '地区',
+					title : 'address',
 					align : 'center',
 					width : 120
 				}, {
 					field : 'other',
 					title : '详细地址',
 					align : 'center',
-					width : 240
-				},
-				   {
-					fixed : 'right',
-					title : '操作',
-					align : 'center',
-					width : 120,
-					toolbar : '#barDemo'
+					width : 120
 				}
 
 				] ],
@@ -170,30 +155,25 @@
 				closeBtn : 1, //是否显示关闭按钮
 				shadeClose : true, //显示模态窗口
 				skin : 'layui-layer-rim', //加上边框
-				area : [ '750px', '500px' ], //宽高
+				area : [ '550px', '440px' ], //宽高
 				content : $('#modal'),
 				yes : function(index, layero) {
-					  var uid = "${user.uid}";
-					alert(  $("#provid").text());
-					alert($("#cityid").text());
-					  $("#cityid").val();
-					  $("#areaid").val();
-					 var other=  $("#provid").val()+ $("#cityid").val()+$("#areaid").val();
-					alert(other); 
 					$.ajax({
-						url : "address/add",
+						url : "user/add",
 						type : "POST",
 						data : {
-							"user" : $("#user").val(),
+							"username" : $("#username").val(),
+							"pwd" : $("#pwd").val(),
+							"sex" : $('input[name="sex"]:checked').val(),
 							"phone" : $("#phone").val(),
-							"name" : name,
-							"other" : $("#address").val(),
-							"uid":uid
+							"address" : $("#address").val(),
+							"money" : $("#money").val()
 						},
 						dataType : "json",
 						success : function(data) {				
 							 layer.close(index); 
-							  location.reload(); 					
+							  location.reload(); 
+						
 						}
 					});
 				}
@@ -289,14 +269,31 @@
 
 	<form class="layui-form" >
 		<div class="layui-form-item">
-			<label class="layui-form-label">收货人</label>
+			<label class="layui-form-label">用户名 </label>
 			<div class="layui-input-inline">
-				<input id="user" type="text" required="" lay-verify="nikename"
+				<input id="username" type="text" required="" lay-verify="nikename"
 					autocomplete="off" class="layui-input">
 			</div>
 		</div>
 
-			<div class="layui-form-item">
+		<div class="layui-form-item">
+			<label class="layui-form-label"></span>密码 </label>
+			<div class="layui-input-inline">
+				<input id="pwd" type="password" required="" lay-verify="pass"
+					autocomplete="off" class="layui-input">
+			</div>
+			<div class="layui-form-mid layui-word-aux">6到16个字符</div>
+		</div>
+
+		<div class="layui-form-item" pane="">
+			<label class="layui-form-label">性别</label>
+			<div class="layui-input-block" id="sex">
+				<input id="man" type="radio" name="sex" value="男" title="男" >
+				<input id="woman" type="radio" name="sex" value="女" title="女">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">手机</label>
 				<div class="layui-input-inline">
@@ -306,36 +303,20 @@
 			</div>
 		</div>
 
-      <div style="width:800px;margin:10px auto;">
-        <form class="layui-form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">选择地区</label>
-                <div class="layui-input-inline">
-                    <select name="provid" id="provid" lay-filter="provid">
-                        <option value="">请选择省</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <select name="cityid" id="cityid" lay-filter="cityid">
-                        <option value="">请选择市</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <select name="areaid" id="areaid" lay-filter="areaid">
-                        <option value="">请选择县/区</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-    </div>
-
 		<div class="layui-form-item">
 			<label class="layui-form-label">地址</label>
 			<div class="layui-input-inline">
 				<input id="address" type="text" name="money" lay-verify="money"
 					placeholder="请输入" autocomplete="off" class="layui-input">
 			</div>
-		</div>	
+		</div>
+		<div class="layui-form-item">
+			<label for="L_username" class="layui-form-label">金额</label>
+			<div class="layui-input-inline">
+				<input id="money" type="text" required="" lay-verify="nikename"
+					autocomplete="off" class="layui-input">
+			</div>
+		</div>
 	</form>
 
 </div>

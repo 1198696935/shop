@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.DetailDao">
+<insert id="add" parameterType="java.util.Map">  
+    insert into detail(iid,oid,title,price,picture,num,description) values
+    <foreach collection="detailList" item="item" index="index" separator="," >  
+        (#{item.iid},#{oid},#{item.title},#{item.price},#{item.picture},#{item.num},#{item.description})  
+    </foreach>  
+</insert> 
+</mapper>

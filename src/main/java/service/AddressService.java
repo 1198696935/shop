@@ -13,4 +13,6 @@ public interface AddressService {
 
 	ArrayList<Address> findAll(int uid,int page, int limit, String keyword);
 
+	boolean add(Address address);
+
 }

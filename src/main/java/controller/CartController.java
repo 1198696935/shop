@@ -9,7 +9,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pojo.Cart;
-import pojo.Item;
 import service.CartService;
 
 @Controller
@@ -31,6 +30,14 @@ public class CartController {
 			return 0;
 		}
 	}
+	
+	@RequestMapping("/delCid")
+	@ResponseBody
+	public int delCid(Integer cid) throws Exception {	
+		cartService.delCid(cid);	
+		return 0;
+	}
+	
 	@RequestMapping("/cart")
 	public String cart(Integer uid,ModelMap map)throws Exception{
 	{
@@ -39,5 +46,4 @@ public class CartController {
 				return "cart";
 	}	
 	}
-
 }

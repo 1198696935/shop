@@ -20,7 +20,7 @@
         </div>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item to-index"><a href="user/home">商城首页</a></li>
-          <li class="layui-nav-item to-index"><a href="/">退出</a></li> 
+          <li class="layui-nav-item to-index"><a href="user/logout">退出</a></li> 
         </ul>    
     </div>
     <!-- 顶部结束 -->
@@ -37,6 +37,11 @@
                 </a>
                  <ul class="sub-menu">
                     <li>
+                        <a _href="order/selectUid">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>全部订单</cite>     
+                        </a>
+                        
                         <a _href="">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>待发货</cite>     

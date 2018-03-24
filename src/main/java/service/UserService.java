@@ -12,5 +12,6 @@ public interface UserService {
 	public ArrayList<User> findAll(int page, int limit,String keyword);
 	public User login(String userName, String pwd);
 	public boolean findUserName(String userName);
-	public boolean findPhone(String phone);
+	public User findPhone(String phone);
+
 }

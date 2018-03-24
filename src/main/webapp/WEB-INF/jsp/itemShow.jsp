@@ -259,12 +259,11 @@
 						</dl>
 						<span class="stock" style="display: none;">库存: <span
 							id="J_stock" data-extprice="0.00">196</span></span>
+							<br>
 						<div class="btns">
-							<span id="J_btnGroup"> <a href="javascript://"
-								class="btn btn-buynow J_buyNow" name="buynow">立即购买</a> <a
+							<span id="J_btnGroup">  <a
 								class="btn btn-add J_addToCart" name="addcart" id="addcart">加入购物车</a>
-							</span> <input type="hidden" name="goods_id" value="36558"> <input
-								type="hidden" name="act" value="addtocart">
+							</span> 
 						</div>
 					</form>
 				</div>
@@ -432,7 +431,6 @@
 					success : function(data) {
 						if (data == 1) {
 							var layer = layui.layer;
-							/*  layer.msg('注册失败'); */
 							layer.msg('成功加入购物车', {
 								time : 0 //不自动关闭
 								,
@@ -469,7 +467,6 @@
 	</script>
 
 	<script>
-	
 			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 			//触发事件
 			var active = {
@@ -479,6 +476,24 @@
 				}
 			};
 		
+	</script>
+	<script>
+		$("#searchBtn").click(function() {
+			var title = $("#searchInput").val();
+			location.href = "item/selectTitle?title=" + title;
+			$("#searchInput").val("");
+		});
+
+		$(".cart-wraper").click(function() {
+			var test = ${user != null};
+			if (test) {
+				location.href = "cart/cart?uid=${user.uid}";
+			} else {
+				layer.alert('请先登录', {
+					icon : 6
+				});
+			}
+		});
 	</script>
 </body>
 </html>

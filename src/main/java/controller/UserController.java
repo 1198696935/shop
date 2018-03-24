@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.sf.json.JSONObject;
 import com.github.pagehelper.PageInfo;
 
+import pojo.Cell;
 import pojo.News;
 import pojo.Pager;
 import pojo.User;
@@ -127,7 +128,6 @@ public class UserController {
 		user.setAddress(address);
 		user.setMoney(money);
 		user.setPhone(phone);
-
 		if (userService.edit(user)) {
 			return 1;
 
@@ -152,7 +152,7 @@ public class UserController {
 	@RequestMapping("/findPhone")
 	@ResponseBody
 	public int findPhone(String phone) throws Exception {
-		if (userService.findPhone(phone))
+		if (userService.findPhone(phone)!=null)
 			return 0;
 		else
 			return 1;
@@ -161,7 +161,6 @@ public class UserController {
 	@RequestMapping("/findUserName")
 	@ResponseBody
 	public int findUserName(String username) throws Exception {
-		System.out.println("dddd");
 		if (userService.findUserName(username))
 		{
 			return 0;
@@ -189,10 +188,13 @@ public class UserController {
 	@RequestMapping("/phoneLogin")
 	@ResponseBody
 	public int phoneLogin(HttpSession session, String phone, Integer code) throws Exception {
-		if (session.getAttribute("user") != null) {
-			User user = (User) session.getAttribute("user");
-			if (code.equals(user.getCode()) && phone.equals(user.getPhone())) {
+		if (session.getAttribute("cell") != null) {
+			Cell cell = (Cell) session.getAttribute("cell");
+			if (code.equals(cell.getCode()) && phone.equals(cell.getPhone())) {
+				User user=userService.findPhone(phone);
+				session.setAttribute("user", user);
 				return 1;
+				
 			} else
 				return 2;
 		}
@@ -205,10 +207,10 @@ public class UserController {
 		sendsms sms = new sendsms();
 		int sms_code = (int) ((Math.random() * 9 + 1) * 100000); // 生成手机验证码
 		sms.getSMS(sms_code, phone);
-		User user = new User();
-		user.setPhone(phone);
-		user.setCode(sms_code);
-		session.setAttribute("user", user);
+		Cell cell = new Cell();
+		cell.setPhone(phone);
+		cell.setCode(sms_code);
+		session.setAttribute("cell", cell);
 		return 1;
 	}
     

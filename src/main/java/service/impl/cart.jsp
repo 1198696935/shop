@@ -11,16 +11,14 @@
 <link rel="stylesheet" href="css/goods_order.css">
 <link rel="stylesheet" type="text/css" href="css/jquery.step.css" />
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-<link rel="stylesheet" href="lib/layui/css/layui.css" media="all">
-<script type="text/javascript" src="lib/layui/layui.all.js"></script>
 <script src="js/jquery.step.min.js"></script>
 </head>
 <body>
 	<div class="top-nav">
 		<div class="wrap clearfix">
 			<div class="fl clearfix nav-about">
-				<a href=user/home> <span style="color:blue">首页
-				</span></a> <span class="sp">|</span> <span>客服热线：18818429757</span>
+				<span>妈妈网
+				</span> <span class="sp">|</span> <span>客服热线：18818429757</span>
 			</div>
 			<div class="login-info fr clearfix">
 				<div class="not-login clearfix">
@@ -48,7 +46,7 @@
 
 	<div class="logo-cart-box">
 		<div class="wrap clearfix">
-			<a  class="logo fl">
+			<a href="/user/home" class="logo fl">
 				<img src="img/icon/logo.png" width="152" height="65"
 				title="小树熊，妈网官方商城">
 			</a>
@@ -81,7 +79,7 @@
 
 		<div class="goods-item-list">
 			<div class="row thead-2">
-				<!-- <input type="checkbox" class="checkbox"> -->
+				<input type="checkbox" class="checkbox">
 				<div class="goods-classify fl">
 					<span class="text">满88元包邮</span> <span class="trigon"></span>
 				</div>
@@ -93,12 +91,12 @@
 						<input type="checkbox" class="checkbox gc">
 					</div>
 					<div class="col col-2 clearfix cart-goods-info">
-						<a href="item/selectIid?iid=${cart.item.iid}"
+						<a href="/item/selectIid?iid=${cart.item.iid}"
 							class="pic-holder fl"> <img src="${cart.item.picture}"
 							width="78">
 						</a>
 						<div class="texts">
-							<a href="item/selectIid?iid=${cart.item.iid}"
+							<a href="/item/selectIid?iid=${cart.item.iid}"
 								class="goods-title">${cart.item.description}</a>
 							<p class="size">属性：均码</p>
 							<p class="size"></p>
@@ -122,13 +120,13 @@
 						<span class="account">${cart.item.price*cart.count}</span>
 					</div>
 					<div class="col col-6 operation">
-						<span class="icon-del" onclick=""></span>
+						<span class="icon-del" onclick="delCart(${cart.cid})"></span>
 						<div class="popup-delete-goods">
 							<i class="triangle"></i>
 							<p class="sure-text">确定删除所选商品吗 ?</p>
 							<div class="btns" data-del="">
 								<a href="javascript://" class="btn-del"
-									onclick="delCart(${cart.cid})">删除</a> <a href="javascript://"
+									onclick="confirmDelCart()">删除</a> <a href="javascript://"
 									class="btn-cancle">取消</a>
 							</div>
 						</div>
@@ -180,7 +178,7 @@
 				<div class="hd"><span class="tit">费用详情</span> &nbsp;&nbsp;&nbsp;&nbsp;<a id="prevBtn">返回上一步</a></div>
 				<div class="bd clearfix">
 					<div class="cost-info fr" id="AA">
-						<p>共<span class="goods-nums red" id="total-count">0</span>件商品，商品金额：<i class="cost-box-about"><label id="total-price">0</label></i></p>
+						<p>共<span class="goods-nums red total-count">0</span>件商品，商品金额：<i class="cost-box-about"><label class="total-price">0</label></i></p>
 						<p>运费：<i class="cost-box-about"><span>￥</span><label id="expressPrice"></label></i></p>
 						<p>总金额：<i class="cost-box-about red"><span>￥</span><label id="finalPrice">0</label></i></p>
 					</div>
@@ -204,7 +202,7 @@
 	 <div id="success" class="about-error-tips" style="display:none">
             <div class="about-error-tips-bd">
                 <img class="face" src="img/icon/bear.jpg" style="height:200px;width:200px;" alt="">
-                <p class="p1">亲，您已经下单成功 <br>我们将尽快为您派送商品</p>
+                <p class="p1">亲，您已完成购物流程 <br>我们将尽快为您派送商品</p>
                 <a class="error-tips-btn" id="personalBtn">个人中心</a>
             </div>
         </div>
@@ -242,7 +240,7 @@
 				$step.step({
 					index : 0,
 					time : 500,
-					title : [ "我的购物车", "提交订单", "下单成功" ]
+					title : [ "我的购物车", "提交订单", "开始派送商品" ]
 				});
 
 				$index.text($step.getIndex());
@@ -250,9 +248,9 @@
 		             //异步获取地址
 					getAddress();
 		             //计算邮费
-		              $("#total-price").text($(".total-price").text());
-		             $("#total-count").text($(".total-count").text());
-		            var totalPrice= $("#total-price").text();    
+		             
+		            var totalPrice=parseFloat($(".cost-box-about").find(".total-price").text());
+		           
 		            if(totalPrice<88&&totalPrice>0)
 		            	{
 		            	    $("#expressPrice").text('10');
@@ -264,7 +262,6 @@
 		             //得出最终价格
 		             var expressPrice=parseFloat($("#expressPrice").text());       
 		             var finalPrice=totalPrice-expressPrice;
-		             alert("finalPrice"+finalPrice);
 		             $("#finalPrice").text(finalPrice);
 					$step.nextStep();
 					$index.text($step.getIndex());	
@@ -285,39 +282,24 @@
 						object.num=$(this).parent().parent().find(".num").val();	
 						itemList.push(object);	
 					});
-				       var order=new Object();
-				       var uid = "${user.uid}";
-				       order.address=$("#nameLabel").text();
-				       order.other=$("#otherLabel").text();
-				       order.username=$("#userNameLabel").text(); 
-				       order.phone=$("#phoneLabel").text();	
-				       order.payment=$("#finalPrice").text();
-				       order.uid=uid;
-				       alert(JSON.stringify(order));
+				
+					 var name =$("#nameLabel").text();
+					 var other=$("#otherLabel").text();
+					 var username=$("#userNameLabel").text();
+					 var phone=$("#phoneLabel").text();	 
+					 var objectOrder = new Object();  
+					 
+					 objectOrder.name=$("#nameLabel").text();
+					 objectOrder.other=$("#otherLabel").text();
+					 objectOrder.username=$("#userNameLabel").text();
+					 objectOrder.phone=$("#phoneLabel").text();	
 					 $.ajax({  
-						 dataType: "json",
 						 type:"POST",  
-						 url:"order/add",  
-						 data:{"orderData":JSON.stringify(order)},  
-						 
+						 url:"detail/add",  
+						 data:{"itemList":JSON.stringify(itemList)},  
+						 dataType: "json",  
 						 success:function (data){  
-							$.ajax({  
-									 type:"POST",  
-									 url:"detail/add",  
-									 data:{"itemList":JSON.stringify(itemList)},  
-									 dataType: "json",  
-									 success:function (){  
-										    $step.nextStep();
-											$index.text($step.getIndex());
-											$("#cart").hide();
-											$("#balance").hide();
-											$("#success").show();
-									 },  
-									 error:function (){  
-									      alert("支付失败");  
-									 }  
-								});   
-										
+							 alert("支付成功");  
 						 },  
 						 error:function (){  
 						      alert("支付失败");  
@@ -326,7 +308,28 @@
 					 
 					
 					
+					$.ajax({  
+						 type:"POST",  
+						 url:"detail/add",  
+						 data:{"itemList":JSON.stringify(itemList)},  
+						 dataType: "json",  
+						 success:function (data){  
+							 alert("支付成功");  
+						 },  
+						 error:function (){  
+						      alert("支付失败");  
+						 }  
+					});  
+							
+					$step.nextStep();
+					$index.text($step.getIndex());
+					$("#cart").hide();
+					$("#balance").hide();
+					$("#success").show();
+					
 				});
+				
+				
 				
 				$("#prevBtn").on("click", function() {
 					$step.prevStep();
@@ -357,18 +360,16 @@
 							input.val(count);
 							var price = $(this).parent().parent().parent()
 									.prev().find(".price").text(); 
+							
 							var account = parseFloat(price).toFixed(2) * count;
 							var accountText = $(this).parent().parent()
 									.parent().next().find(".account").text(
 											account);
-							alert(account);
 							var flag=$(this).parent().parent().parent().parent().find(".gc").is(":checked");	
 							if(flag)
 								{
 								   var  totalPrice=parseFloat($(".total-price").text())+parseFloat(price);
-								   var  totalCount=parseInt($(".total-count").text())+1;
-								 
-								   alert("totalCount"+totalCount);
+								   var  totalCount=parseInt($("#total-count").text())+1;
 								   $(".total-price").text(totalPrice);
 								   $(".total-count").text(totalCount);
 								}
@@ -382,7 +383,7 @@
 							if (input.val() <= 1) {
 								return false;
 							}
-							var count = parseInt($(this).next().val())-1;
+							var count = parseInt($(this).next().val()) - 1;
 							input.val(count);
 							var price = $(this).parent().parent().parent()
 									.prev().find(".price").text();
@@ -394,7 +395,7 @@
 							if(flag)
 							{
 							   var  totalPrice=parseFloat($(".total-price").text())-parseFloat(price);
-							   var  totalCount=parseInt($(".total-count").text())-1;	  
+							   var  totalCount=parseInt($("#total-count").text())-1;
 							   $(".total-price").text(totalPrice);
 							   $(".total-count").text(totalCount);
 							}
@@ -438,25 +439,12 @@
 				$(".checkbox").click(function() {
 					abc();
 				});
+				
+				function delCart()
+				{
+					
+				}
 			</script>
-			
-			<script>  
-                   function delCart(cid){
-	                    $.ajax({  
-							 type:"POST",  
-							 url:"cart/delCid",  
-							 data:{"cid":cid},  
-							 dataType: "json",  
-							 success:function (data){
-								 
-							 },  
-							 error:function (){  
-							      alert("删除失败");  
-							 }  
-						});   
-                    }
-             </script> 
-			
 			
 		<script>
 			/* 异步请求获取地址 */
@@ -473,7 +461,7 @@
 				$("#addressList").html("");
 				var context='<ul  class="address-list clearfix">';
 				 $.each(data,function(i, address) { 
-				var temp=`<li>
+				var temp=`<li  onclick="addressLabel()">
 				<div class="address-list-bd">
 					<i class="clk"></i>
 					<div class="hdbox">
@@ -526,11 +514,7 @@
   }
   
   </script>
-  <script>
-     $("#personalBtn").on("click",function(){
-    	 location.href="user/personal";
-     })
-  </script>
+  
 </body>
 
 </html>

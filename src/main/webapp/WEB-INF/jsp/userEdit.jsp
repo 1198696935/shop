@@ -15,7 +15,6 @@
 	<div class="x-body">
 		<form class="layui-form">
 		<div class="layui-form-item">
-			<!-- 	<label  class="layui-form-label">编号</label> -->
 				<div class="layui-input-inline">
 					<input id="uid" type="text"  style="display: none;" class="layui-input">
 				</div>

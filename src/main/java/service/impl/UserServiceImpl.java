@@ -73,11 +73,8 @@ public class UserServiceImpl implements UserService {
 			return true;
 	}
 
-	public boolean findPhone(String phone) {
+	public User findPhone(String phone) {
 		// TODO Auto-generated method stub
-		if(userDao.findPhone(phone)==null)	
-			return false;
-		 else 
-			return true;
+		return userDao.findPhone(phone);
 	}
 }

@@ -2,7 +2,7 @@ package dao;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Delete;
 
 import pojo.Cart;
 
@@ -13,5 +13,8 @@ public interface CartDao {
 
 	ArrayList<Cart> selectUid(int uid);
 	int  add(Cart cart);
+	
+	@Delete("delete from cart where cid=#{cid}")
+	void delCid(Integer cid);
 
 }

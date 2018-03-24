@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageInfo;
 import pojo.Address;
 import pojo.Pager;
+import pojo.User;
 import service.AddressService;
 
 @Controller
@@ -37,6 +40,21 @@ public class AddressController {
 		return addressList;
 	}
 	
+	
+	@RequestMapping("/add")
+	@ResponseBody
+	public int add(HttpSession session,int uid, String user, String phone, String name, String other) throws Exception {
+		Address address = new Address();
+		address.setName(name);
+		address.setPhone(phone);
+		address.setUser(user);
+		address.setOther(other);
+		address.setUid(uid);
+		if (addressService.add(address))
+			return 1;
+		else
+			return 0;
+	}
 	@RequestMapping("/findAll")
 	@ResponseBody
 	public Pager<Address> findAll(Model model,int page, int limit, String keyword) throws Exception {

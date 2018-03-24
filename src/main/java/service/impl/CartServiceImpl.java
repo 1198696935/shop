@@ -5,16 +5,14 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dao.CartDao;
-import dao.ItemDao;
 import pojo.Cart;
-import pojo.Item;
 import service.CartService;
 
 @Service
 public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartDao cartDao;
-    private ItemDao itemDao;
+  
 	public boolean add(Cart cart) {
 		// TODO Auto-generated method stub
 		int flag=cartDao.add(cart);
@@ -33,6 +31,11 @@ public class CartServiceImpl implements CartService {
 		// TODO Auto-generated method stub
 		 ArrayList<Cart> cartList = cartDao.selectUid(uid);
 		return  cartList;
+	}
+
+	public void delCid(Integer cid) {
+		// TODO Auto-generated method stub
+		  cartDao.delCid(cid);
 	}
 
 }

@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="lib/layui/css/layui.css" media="all">
-
-
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <link href="css/jBootsrapPage.css" rel="stylesheet" />
 <script src="js/jBootstrapPage.js"></script>
@@ -232,8 +230,7 @@ $(function(){
 		<ul class="category-list clearfix mb-25">
 			<c:forEach items="${itemList}" var="item">
 				<li class="mod-item"><a href="item/selectIid?iid=${item.iid}"
-					;
-				class="goods-pic-title mb-10" target="_blank">
+				class="goods-pic-title mb-10" >
 						<div class="pic-holder mb-10">
 							<img src="${item.picture}" title="" width="233" height="233">
 						</div>

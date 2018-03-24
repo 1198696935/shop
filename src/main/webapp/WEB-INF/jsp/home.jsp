@@ -123,7 +123,7 @@
 								</div>
 								<div id="submenu-0" class="popover">
 									<div class="link-list">
-										<a href="item/tid?tid=3" target="_blank" class="link-item">
+										<a href="item/tid?tid=3" target="_Self" class="link-item">
 											<div class="pic-holder">
 												<img src="img/item/milk.jpg" title="小树熊，妈网官方商城" width="58"
 													height="58">

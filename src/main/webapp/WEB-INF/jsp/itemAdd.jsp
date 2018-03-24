@@ -115,8 +115,7 @@
 																			+ "</option>"
 																}
 																$("#b").html(t);
-																form
-																		.render('select'); //这个很重要
+																form.render('select'); //这个很重要
 															}
 														})
 											});

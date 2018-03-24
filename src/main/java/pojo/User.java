@@ -8,13 +8,13 @@ public class User {
 	private Double money;
 	private String sex;
 	private String phone;
-    private Integer code;
-	public Integer getCode() {
-		return code;
+
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setCode(Integer code) {
-		this.code = code;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Integer getUid() {
@@ -64,14 +64,4 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	
 }

@@ -9,7 +9,6 @@ import com.github.pagehelper.PageHelper;
 
 import dao.AddressDao;
 import pojo.Address;
-import pojo.User;
 import service.AddressService;
 @Service
 public class AddressServiceImpl implements AddressService  {
@@ -39,6 +38,10 @@ public class AddressServiceImpl implements AddressService  {
 		else
               return null;
 			/*return addressDao.findUsername(keyword);*/
+	}
+	public boolean add(Address address) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }
