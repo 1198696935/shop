@@ -5,7 +5,6 @@ import java.sql.Date;
 public class Order {
 	
 	private Integer oid;
-	
 	private Integer uid;
 	private Integer status;	
 	private Double payment;
