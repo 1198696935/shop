@@ -1,16 +1,15 @@
 package controller;
 
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.github.pagehelper.PageInfo;
 import pojo.Address;
 import pojo.Pager;
@@ -43,12 +42,13 @@ public class AddressController {
 	
 	@RequestMapping("/add")
 	@ResponseBody
-	public int add(HttpSession session,int uid, String user, String phone, String name, String other) throws Exception {
+	public int add(HttpSession session,int uid, String username, String phone, String area, String site) throws Exception {
 		Address address = new Address();
-		address.setName(name);
+		System.out.println("地址");
+		address.setUsername(username);
 		address.setPhone(phone);
-		address.setUser(user);
-		address.setOther(other);
+		address.setArea(area);
+		address.setSite(site);
 		address.setUid(uid);
 		if (addressService.add(address))
 			return 1;
@@ -57,9 +57,12 @@ public class AddressController {
 	}
 	@RequestMapping("/findAll")
 	@ResponseBody
-	public Pager<Address> findAll(Model model,int page, int limit, String keyword) throws Exception {
+	public Pager<Address> findAll(HttpSession session,Model model,int page, int limit, String keyword) throws Exception {
 		Integer uid;
-		uid=83;
+		if (session.getAttribute("user") != null) {
+			User user= (User) session.getAttribute("user");
+			uid=user.getUid();
+		}
 		ArrayList<Address> addressList = addressService.findAll(uid,page, limit, keyword);
 		PageInfo<Address> pageInfo = new PageInfo<Address>(addressList);
 		// 计算总行数
@@ -73,10 +76,24 @@ public class AddressController {
 
 	@RequestMapping("/delAid")
 	@ResponseBody
-	public void delAid(ModelMap map, int aid,int uid) throws Exception {
-		if (addressService.delAid(aid,uid)) {
+	public int  delAid(ModelMap map, int aid) throws Exception {
+		addressService.delAid(aid);	
+		 return 1;
+	}
+	
+	@RequestMapping("/edit")
+	@ResponseBody
+	public int edit(int aid,String username,String phone,String area,String site) throws Exception {
+		Address address=new Address();
+		address.setUsername(username);
+		address.setPhone(phone);
+		address.setArea(area);
+		address.setSite(site);
+		if (addressService.edit(address)) {
+			return 1;
 
 		} else {
+			return 0;
 		}
 	}
 }

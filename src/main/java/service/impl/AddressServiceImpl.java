@@ -18,17 +18,7 @@ public class AddressServiceImpl implements AddressService  {
 		// TODO Auto-generated method stub
 		return addressDao.findAll(uid);
 	}
-	public boolean delAid(int aid,int uid) {
-		// TODO Auto-generated method stub
-		int flag;
-		flag=addressDao.delAid(aid,uid);
-		if(flag>0)
-		{
-			return true;
-		}
-		else 
-			return false;
-	}
+	
 	public ArrayList<Address> findAll(int uid,int page, int limit, String keyword) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(page, limit);
@@ -41,7 +31,18 @@ public class AddressServiceImpl implements AddressService  {
 	}
 	public boolean add(Address address) {
 		// TODO Auto-generated method stub
+	   addressDao.add(address);
 		return true;
+	}
+	public boolean edit(Address address) {
+		// TODO Auto-generated method stub
+		addressDao.edit(address);
+		return true;
+	}
+	public boolean delAid(int aid) {
+		// TODO Auto-generated method stub
+		addressDao.delAid(aid);
+		return false;
 	}
 
 }

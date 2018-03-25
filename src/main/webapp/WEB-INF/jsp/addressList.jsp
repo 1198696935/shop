@@ -12,23 +12,13 @@
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/xadmin.js"></script>
-
-
-    <link rel="stylesheet" href="layui/css/layui.css" /> 
-    <script type="text/javascript" src="layui/layui.js"></script> 
-    <script type="text/javascript" src="assets/data.js"></script>
-    <script type="text/javascript" src="assets/province.js"></script>
-    <script type="text/javascript">
-        var defaults = {
-            s1: 'provid',
-            s2: 'cityid',
-            s3: 'areaid',
-            v1: null,
-            v2: null,
-            v3: null
-        };
-
-    </script>
+<script type="text/javascript" src="js/address.js"></script>
+<style type="text/css">
+		#addressdiv select{width: 80px;height: 30px;border: 1px solid #c0c0c0;border-radius: 5px;outline: none;}
+		#addressdiv select option{width: 80px;max-width: 100px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+</style>
+   
+  
 </head>
 <body>
 	<div class="x-body">
@@ -47,13 +37,13 @@
 		</xblock>
 		<table class="layui-hide" id="tableId" lay-filter="demo"></table>
 	</div>
-
+   
 	<script>
 		layui.use([ 'table' ], function() {
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'address/findAll' //数据接口 
+				url : 'address/findAll&id=${user.uid}' //数据接口 
 				,
 				cols : [ [ //表头
 				{
@@ -81,7 +71,7 @@
 					align : 'center',
 					width : 120
 				}, {
-					field : 'other',
+					field : 'site',
 					title : '详细地址',
 					align : 'center',
 					width : 240
@@ -120,12 +110,6 @@
 			<a title="删除" lay-event="del" style="color:#FF5722">
 				<i class="layui-icon">&#xe640;</i>
 			</a>
-		</script>
-
-	<script type="text/html" id="sexTpl">
-			{{# if(d.sex === '女'){}}
-			<span style="color: red;">{{d.sex}}</span> {{#} else {}}
-			<span style="color: green;">{{ d.sex }}</span> {{#}}}
 		</script>
 
 	<script>
@@ -170,24 +154,22 @@
 				closeBtn : 1, //是否显示关闭按钮
 				shadeClose : true, //显示模态窗口
 				skin : 'layui-layer-rim', //加上边框
-				area : [ '750px', '500px' ], //宽高
+				area : [ '450px', '380px' ], //宽高
 				content : $('#modal'),
 				yes : function(index, layero) {
 					  var uid = "${user.uid}";
-					alert(  $("#provid").text());
-					alert($("#cityid").text());
-					  $("#cityid").val();
-					  $("#areaid").val();
-					 var other=  $("#provid").val()+ $("#cityid").val()+$("#areaid").val();
-					alert(other); 
+					  var province=$("#province").val();
+					  var city=$("#city").val();
+					  var town=$("#town").val();
+					  area=province+" "+city+" "+town;
 					$.ajax({
 						url : "address/add",
 						type : "POST",
 						data : {
-							"user" : $("#user").val(),
+							"username" : $("#username").val(),
 							"phone" : $("#phone").val(),
-							"name" : name,
-							"other" : $("#address").val(),
+							"area" : area,
+							"site" : $("#site").val(),
 							"uid":uid
 						},
 						dataType : "json",
@@ -204,14 +186,14 @@
 			layer.confirm('真的删除行吗', function(index) {
 				var data = obj.data;
 				$.ajax({
-					url : "user/del",
+					url : "address/delAid",
 					type : "POST",
 					data : {
-						"uid" : data.uid
+						"aid" : data.aid
 					},
 					dataType : "json",
 					success : function(data) {
-						if (data.state == 1) {
+						if (data==1) {
 							obj.del();
 							layer.close(index);
 							layer.msg("删除成功", {
@@ -228,18 +210,10 @@
 		}
 
 		function edit(data) {
-			var temp = data.sex;
-			var uid = data.uid;
+			var aid = data.aid;
 			$("#username").val(data.username);
-			$("#pwd").val(data.pwd);
-			if (data.sex == "男") {
-				$("#man").next().find("i").click();
-			} else {
-				$("#woman").next().find("i").click();
-			}
 			$("#phone").val(data.phone);
-			$("#address").val(data.address);
-			$("#money").val(data.money);
+			$("#site").val(data.site);
 			layer.open({
 				type: 1, //弹窗类型
 				title: '用户信息', //显示标题 
@@ -248,20 +222,22 @@
 				closeBtn: 1, //是否显示关闭按钮
 				shadeClose: true, //显示模态窗口
 				skin: 'layui-layer-rim', //加上边框
-				area: ['550px', '440px'], //宽高
+				area: ['450px', '380px'], //宽高
 				content: $('#modal'),
 				yes: function(index, layero) {
+					var province=$("#province").val();
+					  var city=$("#city").val();
+					  var town=$("#town").val();
+					  area=province+" "+city+" "+town;
 					$.ajax({
-						url: "user/edit",
+						url: "address/edit",
 						type: "POST",
 						data: {
-							"uid": uid,
+							"aid":aid,
 							"username": $("#username").val(),
-							"pwd": $("#pwd").val(),
-							"sex": $('input[name="sex"]:checked').val(),
 							"phone": $("#phone").val(),
-							"address": $("#address").val(),
-							"money": $("#money").val()
+							"area": $("#area").val(),
+							"site": $("#site").val()
 						},
 						dataType: "json",
 						success: function(data) {
@@ -284,59 +260,60 @@
 			});
 		});
 	</script>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#addressdiv").selectAddress()
+			$("#town").focusout(function(){
+				var province = $("#province option:selected").html()
+				var city = $("#city option:selected").html()
+				var town = $("#town option:selected").html()
+				if(province!= '选择省份' && city!="选择城市" && town!='选择区域'){
+				}	
+			})
+		})
+	</script>
+	
 </body>
 <div id="modal" class="x-body" style="display:none">
 
-	<form class="layui-form" >
+	
 		<div class="layui-form-item">
 			<label class="layui-form-label">收货人</label>
 			<div class="layui-input-inline">
-				<input id="user" type="text" required="" lay-verify="nikename"
+				<input id="username" type="text" required="" lay-verify="nikename"
 					autocomplete="off" class="layui-input">
 			</div>
 		</div>
-
 			<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">手机</label>
 				<div class="layui-input-inline">
-					<input id="phone" type="tel" name="phone"
-						lay-verify="required|phone" autocomplete="off" class="layui-input">
+					<input id="phone" type="tel" name="phone"  class="layui-input">
 				</div>
 			</div>
 		</div>
 
-      <div style="width:800px;margin:10px auto;">
-        <form class="layui-form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">选择地区</label>
-                <div class="layui-input-inline">
-                    <select name="provid" id="provid" lay-filter="provid">
-                        <option value="">请选择省</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <select name="cityid" id="cityid" lay-filter="cityid">
-                        <option value="">请选择市</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <select name="areaid" id="areaid" lay-filter="areaid">
-                        <option value="">请选择县/区</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-    </div>
-
+     <div id="addressdiv" style="margin: 10px auto auto 70px;">
+		<select class="select" id="province" name="province">
+			<option value="">选择省份</option>
+		<option value="北京">北京</option><option value="上海">上海</option><option value="天津">天津</option><option value="重庆">重庆</option><option value="广东">广东</option><option value="福建">福建</option><option value="湖北">湖北</option><option value="湖南">湖南</option><option value="河北">河北</option><option value="河南">河南</option><option value="山西">山西</option><option value="陕西">陕西</option><option value="江苏">江苏</option><option value="浙江">浙江</option><option value="安徽">安徽</option><option value="江西">江西</option><option value="山东">山东</option><option value="辽宁">辽宁</option><option value="吉林">吉林</option><option value="黑龙江">黑龙江</option><option value="四川">四川</option><option value="贵州">贵州</option><option value="云南">云南</option><option value="西藏">西藏</option><option value="甘肃">甘肃</option><option value="青海">青海</option><option value="宁夏">宁夏</option><option value="新疆">新疆</option><option value="内蒙古">内蒙古</option><option value="广西">广西</option><option value="海南">海南</option><option value="香港">香港</option><option value="澳门">澳门</option><option value="台湾">台湾</option></select>	
+	
+		<select name="city" id="city">
+			<option value="">选择城市</option>
+		</select>
+      
+		<select name="town" id="town">
+			<option value="">选择区域</option>
+		</select>
+	</div>
+         <br><br>
 		<div class="layui-form-item">
-			<label class="layui-form-label">地址</label>
+			<label class="layui-form-label">详细地址</label>
 			<div class="layui-input-inline">
-				<input id="address" type="text" name="money" lay-verify="money"
-					placeholder="请输入" autocomplete="off" class="layui-input">
+				<input id="site" type="text" name="site" placeholder="请输入" autocomplete="off" class="layui-input">
 			</div>
 		</div>	
-	</form>
 
 </div>
 </html>
