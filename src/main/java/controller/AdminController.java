@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.sf.json.JSONObject;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
 	@Autowired
@@ -32,11 +33,10 @@ public class AdminController {
 		return "adminLogin";
 	}
 	
-	@RequestMapping("/admin")
-	public String admin() {
+	@RequestMapping("/main")
+	public String main() {
 		return "main";
 	}
-	
 
 	@RequestMapping("/welcome")
 	public String welcome() {

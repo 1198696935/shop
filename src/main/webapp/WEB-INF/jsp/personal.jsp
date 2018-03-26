@@ -14,7 +14,7 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="/admin">  <i class="layui-icon">&#xe612;</i> <cite>个人中心</cite></a></div>
+        <div class="logo"><a>  <i class="layui-icon">&#xe612;</i> <cite>欢迎您，${user.username}</cite></a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -37,23 +37,10 @@
                 </a>
                  <ul class="sub-menu">
                     <li>
-                        <a _href="order/selectUid">
+                        <a _href="order/orderList">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>全部订单</cite>     
-                        </a>
-                        
-                        <a _href="">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>待发货</cite>     
-                        </a>
-                         <a _href="">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>待收货</cite>     
-                        </a>
-                         <a _href="">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>待评价</cite>     
-                        </a>
+                            <cite>订单列表</cite>     
+                        </a>          
                     </li >
                 </ul>
             </li>
@@ -82,9 +69,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="user/userList">
+                        <a _href="user/personInformation">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户列表</cite>     
+                            <cite>个人信息</cite>     
                         </a>
                     </li >
                 </ul>
@@ -102,7 +89,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='user/personInformation' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>

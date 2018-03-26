@@ -13,5 +13,6 @@ public interface UserService {
 	public User login(String userName, String pwd);
 	public boolean findUserName(String userName);
 	public User findPhone(String phone);
+	public User selectUid(Integer uid);
 
 }

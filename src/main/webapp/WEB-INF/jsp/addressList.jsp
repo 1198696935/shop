@@ -43,7 +43,7 @@
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'address/findAll&id=${user.uid}' //数据接口 
+				url : 'address/find' //数据接口 
 				,
 				cols : [ [ //表头
 				{
@@ -56,7 +56,7 @@
 					width : 120,
 					sort : true
 				}, {
-					field : 'user',
+					field : 'username',
 					title : '用户名',
 					align : 'center',
 					width : 120
@@ -104,84 +104,48 @@
 	</script>
 
 	<script type="text/html" id="barDemo">
-			<a title="编辑" lay-event="edit" style="color:#1E9FFF">
-				<i class="layui-icon">&#xe642;</i>
-			</a>
 			<a title="删除" lay-event="del" style="color:#FF5722">
 				<i class="layui-icon">&#xe640;</i>
 			</a>
 		</script>
 
 	<script>
-		layui
-				.use(
-						[ 'table' ],
-						function() {
-							var table = layui.table;
-							$('#delSome')
-									.on(
-											'click',
-											function() {
-												var checkStatus = table
-														.checkStatus('tableId'), data = checkStatus.data;
-												var ids = new Array();
-												$.each(data, function(index,
-														obj) {
-													ids.push(obj.uid);
-												});
-												$.ajax({
-													url : "user/delAll",
-													type : "POST",
-
-													data : {
-														"ids" : ids
-													},
-													success : function(state) {
-														location.reload();
-													}
-												});
-											});
-						});
-	</script>
-
-	<script>
-		function add() {
-			layer.open({
-				type : 1, //弹窗类型
-				title : '增加', //显示标题 
-				btn : '提交',
-				btnAlign : 'c',
-				closeBtn : 1, //是否显示关闭按钮
-				shadeClose : true, //显示模态窗口
-				skin : 'layui-layer-rim', //加上边框
-				area : [ '450px', '380px' ], //宽高
-				content : $('#modal'),
-				yes : function(index, layero) {
-					  var uid = "${user.uid}";
-					  var province=$("#province").val();
-					  var city=$("#city").val();
-					  var town=$("#town").val();
-					  area=province+" "+city+" "+town;
-					$.ajax({
-						url : "address/add",
-						type : "POST",
-						data : {
-							"username" : $("#username").val(),
-							"phone" : $("#phone").val(),
-							"area" : area,
-							"site" : $("#site").val(),
-							"uid":uid
-						},
-						dataType : "json",
-						success : function(data) {				
-							 layer.close(index); 
-							  location.reload(); 					
-						}
-					});
-				}
-			});
-		}
-
+	function add() {
+		layer.open({
+			type: 1, //弹窗类型
+			title: '用户信息', //显示标题 
+			btn: '提交',
+			btnAlign: 'c',
+			closeBtn: 1, //是否显示关闭按钮
+			shadeClose: true, //显示模态窗口
+			skin: 'layui-layer-rim', //加上边框
+			area: ['450px', '380px'], //宽高
+			content: $('#modal'),
+			yes: function(index, layero) {
+				var province=$("#province").val();
+				  var city=$("#city").val();
+				  var town=$("#town").val();
+				  area=province+" "+city+" "+town;
+				$.ajax({
+					url: "address/add",
+					type: "POST",
+					data: {
+						"username": $("#username").val(),
+						"phone": $("#phone").val(),
+						"area": area,
+						"site": $("#site").val()
+					},
+					dataType: "json",
+					success: function(data) {
+						layer.close(index);
+						location.reload();
+					}
+				});
+			}
+		});
+	}
+	
+	
 		function del(obj) {
 			layer.confirm('真的删除行吗', function(index) {
 				var data = obj.data;
@@ -236,7 +200,7 @@
 							"aid":aid,
 							"username": $("#username").val(),
 							"phone": $("#phone").val(),
-							"area": $("#area").val(),
+							"area": area,
 							"site": $("#site").val()
 						},
 						dataType: "json",
@@ -248,6 +212,8 @@
 				}
 			});
 		}
+		
+		
 
 		$('#search').on('click', function() {
 			layui.use([ 'table' ], function() {

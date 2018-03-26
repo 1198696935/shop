@@ -14,17 +14,16 @@ public class DetailServiceImpl implements DetailService {
 	@Autowired
 	private DetailDao detailDao;
 	
-
-	public ArrayList<Detail> selectUid(int uid) {
-		// TODO Auto-generated method stub
-		 ArrayList<Detail> detailList = detailDao.selectUid(uid);
-		return  detailList;
-	}
-
 	public boolean add(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		detailDao.add(map);
 		return true;
+	}
+
+	public ArrayList<Detail> selectOid(Integer oid) {
+		// TODO Auto-generated method stub
+		 ArrayList<Detail> detailList = detailDao.selectOid(oid);
+			return  detailList;
 	}
 
 }

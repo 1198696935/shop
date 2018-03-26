@@ -18,8 +18,7 @@ public interface UserDao {
 
 	public int delSome(int[] ids);
 
-	@Update("update user set username = #{username}, pwd = #{pwd},sex=#{sex},phone=#{phone},address=#{address},money=#{money} where uid = #{uid}")
-	public int edit(User user);
+
 
 	@Select(" select * from user ")
 	public ArrayList<User> findAll();
@@ -35,4 +34,10 @@ public interface UserDao {
    
 	@Select(" select * from user where phone = #{phone} ")
 	public User findPhone(@Param("phone") String phone);
+
+	@Select(" select * from user where uid = #{uid} ")
+	public User selectUid(Integer uid);
+	
+	@Update("update user set username = #{username}, pwd = #{pwd},sex=#{sex},phone=#{phone} where uid = #{uid}")
+	public int editUid(User user);
 }

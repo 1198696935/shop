@@ -2,16 +2,19 @@ package dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-
+import org.apache.ibatis.annotations.Param;
 import pojo.Order;
 
 public interface OrderDao {
 
-	@Insert("insert into user_order(oid,payment,create_time,status,uid,username,phone,address,other) values(#{oid},#{payment},#{createTime},#{status},#{uid},#{username},#{phone},#{address},#{other})")
+	@Insert("insert into user_order(oid,payment,createTime,state,uid,username,phone,area,site) values(#{oid},#{payment},#{createTime},#{state},#{uid},#{username},#{phone},#{area},#{site})")
 	void add(Order order);
 
-	@Select(" select * from user_order where uid=#{uid}")
-	ArrayList<Order> selectUid(Integer uid);
+	@Delete("delete from user_order where oid=#{oid}")
+	void delOid(int oid);
+
+	ArrayList<Order> select(@Param("uid")int uid,@Param("keyword")String keyword);
+
 }

@@ -15,18 +15,23 @@ import service.OrderService;
 public class OrderServiceImpl implements OrderService {
 	@Autowired
 	 private OrderDao orderDao;
+
 	public boolean add(Order order) {
 		// TODO Auto-generated method stub
 		 orderDao.add(order);
-		return true;
+			return true;
 	}
 
-
-	public ArrayList<Order> selectUid(Integer uid, int page, int limit, String keyword) {
+	public ArrayList<Order> select(Integer uid, int page, int limit, String keyword) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(page, limit);
-		 ArrayList<Order> orderList = orderDao.selectUid(uid);
-			return  orderList;
+		return orderDao.select(uid, keyword);
+	}
+	
+
+	public void delOid(int oid) {
+		// TODO Auto-generated method stub
+		orderDao.delOid(oid);
 	}
 
 }

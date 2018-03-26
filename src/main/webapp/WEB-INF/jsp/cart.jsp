@@ -253,6 +253,7 @@
 		              $("#total-price").text($(".total-price").text());
 		             $("#total-count").text($(".total-count").text());
 		            var totalPrice= $("#total-price").text();    
+		            alert("totalPrice"+totalPrice);
 		            if(totalPrice<88&&totalPrice>0)
 		            	{
 		            	    $("#expressPrice").text('10');
@@ -263,8 +264,8 @@
 		            	}
 		             //得出最终价格
 		             var expressPrice=parseFloat($("#expressPrice").text());       
-		             var finalPrice=totalPrice-expressPrice;
-		             alert("finalPrice"+finalPrice);
+		             var finalPrice=totalPrice+expressPrice;
+		             
 		             $("#finalPrice").text(finalPrice);
 					$step.nextStep();
 					$index.text($step.getIndex());	
@@ -287,8 +288,8 @@
 					});
 				       var order=new Object();
 				       var uid = "${user.uid}";
-				       order.address=$("#nameLabel").text();
-				       order.other=$("#otherLabel").text();
+				       order.area=$("#nameLabel").text();
+				       order.site=$("#otherLabel").text();
 				       order.username=$("#userNameLabel").text(); 
 				       order.phone=$("#phoneLabel").text();	
 				       order.payment=$("#finalPrice").text();
@@ -477,12 +478,12 @@
 				<div class="address-list-bd">
 					<i class="clk"></i>
 					<div class="hdbox">
-						<span class="userName"> `+address.user+`</span>
+						<span class="userName"> `+address.username+`</span>
 						<span class="phone">`+address.phone+`</span>
 					</div>
 					<div class="bdbox">
-					 <p class="address-info addressName">`+address.name+`</p> 
-						<p class="other">`+address.other+`</p>
+					 <p class="address-info addressName">`+address.area+`</p> 
+						<p class="other">`+address.site+`</p>
 					</div>
 				</div>
 			</li>`;

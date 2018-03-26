@@ -43,11 +43,18 @@ public class UserController {
 		}
 	}
 
+	@RequestMapping("/personInformation")
+	public String personInformation() {
+		
+		return "personInformation";
+	}
+	
 	@RequestMapping("/userLogin")
 	public String userLogin() {
 
 		return "login";
 	}
+	
 
 	@RequestMapping("/userList")
 	public String userlist() {
@@ -118,15 +125,12 @@ public class UserController {
 	@RequestMapping("/edit")
 	@ResponseBody
 	public int edit(@Param("uid") int uid, @Param("username") String username, @Param("pwd") String pwd,
-			@Param("sex") String sex, @Param("phone") String phone, @Param("address") String address,
-			@Param("money") double money) throws Exception {
+			@Param("sex") String sex, @Param("phone") String phone) throws Exception {
 		User user = new User();
 		user.setUid(uid);
 		user.setUsername(username);
 		user.setPwd(pwd);
 		user.setSex(sex);
-		user.setAddress(address);
-		user.setMoney(money);
 		user.setPhone(phone);
 		if (userService.edit(user)) {
 			return 1;

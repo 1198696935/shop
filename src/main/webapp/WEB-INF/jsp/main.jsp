@@ -20,7 +20,7 @@
         </div>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item to-index"><a href="user/home">商城首页</a></li>
-          <li class="layui-nav-item to-index"><a href="/">退出</a></li> 
+          <li class="layui-nav-item to-index"><a href="admin/logout">退出</a></li> 
         </ul>    
     </div>
     <!-- 顶部结束 -->
@@ -41,10 +41,6 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>热销榜</cite>     
                         </a>
-                         <a _href="">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>库存量</cite>     
-                        </a>
                     </li >
                 </ul>
             </li>
@@ -55,18 +51,10 @@
                     <cite>商品</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
+            
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/type/typeSelect">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>商品类目</cite>
-                        </a>
-                    </li >
-                </ul>
-                
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="/item/itemAdd">
+                        <a _href="item/itemAdd">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品增加</cite>
                         </a>
@@ -82,37 +70,14 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="order/orderList">
                            <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                         </a>
                     </li >
                 </ul>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="order-list.html">
-                         <i class="iconfont">&#xe6a7;</i>
-                            <cite>购物清单</cite>
-                        </a>
-                    </li >
-                </ul>
             </li>
-            
-             <li>
-                <a href="javascript:;">         
-                     <i class="layui-icon">&#xe611;</i>  
-                     <cite>评论</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="order-list.html">
-                         <i class="iconfont">&#xe6a7;</i>
-                            <cite>评论</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
+         
             
              <li>
                 <a href="javascript:;">
@@ -164,7 +129,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='admin/welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>

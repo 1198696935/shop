@@ -48,7 +48,7 @@
 				var pwd = $("#password").val();
 				$.ajax({
 					type : "POST",
-					url : "login",
+					url : "admin/login",
 					data : {
 						adminName : adminName,
 						pwd : pwd
@@ -56,7 +56,9 @@
 					dataType : "json",
 					success : function(data) {
 						if (data.msg = '1')
-							location.href = "admin";
+							{
+							location.href = "admin/main";
+							}
 						else
 							alert("登录失败");
 					}

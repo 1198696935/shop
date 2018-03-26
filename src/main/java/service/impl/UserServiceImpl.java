@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public boolean edit(User user) {
-		int flag = userDao.edit(user);
+		int flag = userDao.editUid(user);
 		if (flag == 1) {
 			return true;
 		} else
@@ -76,5 +76,10 @@ public class UserServiceImpl implements UserService {
 	public User findPhone(String phone) {
 		// TODO Auto-generated method stub
 		return userDao.findPhone(phone);
+	}
+
+	public User selectUid(Integer uid) {
+		// TODO Auto-generated method stub
+		return userDao.selectUid(uid);
 	}
 }
