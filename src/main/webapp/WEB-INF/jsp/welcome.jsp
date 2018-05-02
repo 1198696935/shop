@@ -15,7 +15,7 @@
 
  
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-  <legend class="layui-bg-blue" style="margin-left:60px">进击计划</legend>
+  <legend class="layui-bg-blue" style="margin-left:60px">准备计划</legend>
 </fieldset> 
 <div style="margin-left:50px">
 <ul class="layui-timeline">

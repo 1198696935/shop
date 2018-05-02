@@ -3,16 +3,12 @@ package controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import net.sf.json.JSONArray;
 import pojo.Detail;
 import service.DetailService;
@@ -24,6 +20,16 @@ public class DetailController {
 	@Autowired
 	private DetailService detailService;
 
+	
+	@RequestMapping("/saleEchart")
+	public String saleEchart( ModelMap map) throws Exception{
+		{		
+			ArrayList<Detail> detailList=detailService.selectSale();
+			map.addAttribute("detailList", detailList);
+		   return "saleEcharts";
+		}	
+	}
+	
 	@RequestMapping("/add")
 	@ResponseBody
 	public int addDetail(String itemList,HttpSession session) throws Exception {
@@ -45,11 +51,20 @@ public class DetailController {
 	public String selectOid(Integer oid, ModelMap map) throws Exception {
 		{
 			ArrayList<Detail> detailList = detailService.selectOid(oid);
-			System.out.println("dddddf");
+		
 			for(Detail i:detailList)
 			{
 				System.out.println("ddd"+i.getPicture());
 			}
+			map.addAttribute("detailList", detailList);
+			return "detail";
+		}
+	}
+	
+	@RequestMapping("/selectHot")
+	public String selectHot(ModelMap map) throws Exception {
+		{
+			ArrayList<Detail> detailList = detailService.selectHot();
 			map.addAttribute("detailList", detailList);
 			return "detail";
 		}

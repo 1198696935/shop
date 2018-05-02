@@ -19,15 +19,14 @@
     <div class="layui-col-md8 layui-col-md-offset2">
       <!-- <div class="grid-demo">偏移4列</div> -->
       
-         <h1 style="text-align:center">title:<c:out value="${news.title}"/></h1>
+         <h1 style="text-align:center"><c:out value="${news.title}"/></h1>
          <hr class="layui-bg-green">
         <br>
-       <%--  <img src="${news.picture}"> --%>
-        description:<c:out value="${news.picture}"/>
+              ${news.description}
         </div>
   
      <div class="layui-col-md2">
-      <div class="grid-demo grid-demo-bg1">4/12</div>
+      <div class="grid-demo grid-demo-bg1"></div>
     </div>
     
   </div>

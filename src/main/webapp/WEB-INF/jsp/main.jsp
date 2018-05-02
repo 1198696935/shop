@@ -14,7 +14,7 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="/admin">  <i class="layui-icon">&#xe68e;</i> <cite>Home</cite></a></div>
+        <div class="logo"><a>  <i class="layui-icon">&#xe68e;</i> <cite>Admin</cite></a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -32,12 +32,12 @@
           <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6ce;</i>
-                    <cite>系统统计</cite>
+                    <cite>报表统计</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                  <ul class="sub-menu">
                     <li>
-                        <a _href="">
+                        <a _href="detail/saleEchart">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>热销榜</cite>     
                         </a>
@@ -48,11 +48,17 @@
              <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
-                    <cite>商品</cite>
+                    <cite>商品管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
             
                 <ul class="sub-menu">
+                  <li>
+                        <a _href="item/itemList">
+                           <i class="iconfont">&#xe697;</i>
+                            <cite>商品列表</cite>
+                        </a>
+                    </li >
                     <li>
                         <a _href="item/itemAdd">
                             <i class="iconfont">&#xe6a7;</i>
@@ -61,11 +67,35 @@
                     </li >
                 </ul>
             </li>
+            
+              <li>
+                <a href="javascript:;">
+              <i class="layui-icon">&#xe634;</i>   
+                    <cite>头条管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+              
+                    <li>
+                        <a _href="news/newsList">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>头条列表</cite>     
+                        </a>
+                    </li >
+                    
+                      <li>
+                        <a _href="news/newsAdd">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>头条增加</cite>     
+                        </a>
+                    </li >
+                </ul>
+            </li>
                   
              <li>
                 <a href="javascript:;">
                 <i class="layui-icon"> &#xe65e;</i> 
-                    <cite>订单</cite>
+                    <cite>订单管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
@@ -74,37 +104,18 @@
                            <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite>
                         </a>
+                       <!--   <a _href="order/orderVerify">
+                           <i class="iconfont">&#xe6a7;</i>
+                            <cite>审核订单</cite>
+                        </a> -->
                     </li >
                 </ul>
-            </li>
-         
-            
-             <li>
-                <a href="javascript:;">
-              <i class="layui-icon">&#xe634;</i>   
-                    <cite>头条</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                <li>
-                        <a _href="news/newsAdd">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>增加</cite>     
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="user/userList">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>头条</cite>     
-                        </a>
-                    </li >
-                </ul>
-            </li>
+            </li>    
             
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6b8;</i>
-                    <cite>用户</cite>
+                    <cite>用户管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">

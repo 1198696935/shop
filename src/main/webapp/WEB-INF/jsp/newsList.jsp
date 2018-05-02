@@ -8,19 +8,31 @@
 <link rel="stylesheet" href="lib/layui/css/layui.css" media="all">
 <link rel="stylesheet" href="css/font.css">
 <link rel="stylesheet" href="css/xadmin.css">
+
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="lib/layui/layui.all.js"></script>
+<script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/xadmin.js"></script>
 <script type="text/javascript" src="js/address.js"></script>
 <style type="text/css">
 		#addressdiv select{width: 80px;height: 30px;border: 1px solid #c0c0c0;border-radius: 5px;outline: none;}
 		#addressdiv select option{width: 80px;max-width: 100px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 </style>
+   
+  
 </head>
-
 <body>
 	<div class="x-body">
-		<br>
+		<xblock>
+		
+		<div style="margin-right: 200px">
+			<div class="layui-inline">
+				<input class="layui-input" name="keyword" id="demoReload"
+					autocomplete="off">
+			</div>
+			<button id="search" class="layui-btn layui-btn-normal"
+				data-type="reload">搜索</button>
+		</div>
+		</xblock>
 		<table class="layui-hide" id="tableId" lay-filter="demo"></table>
 	</div>
    
@@ -29,55 +41,40 @@
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'order/select',
-				cols : [ [ 
-					 {
-						field : 'oid',
-						title : '订单号',
-						align : 'center',
-						width : 160,
-						sort : true
-					}, {
-						field : 'createTime',
-						title : '创建时间',
-						align : 'center',
-						width : 160
-					}, {
-						field : 'payment',
-						title : '金额',
-						align : 'center',
-						width : 160
-					}, {
-						field : 'username',
-						title : '收货人',
-						width : 160,
-						align : 'center',
-						templet : '#sexTpl'
-					}, {
-						field : 'area',
-						title : '地区',
-						align : 'center',
-						width : 160
-					}, {
-						field : 'site',
-						title : '详细地址',
-						align : 'center',
-						width : 160
-					},{
-						field : 'state',
-						title : '状态',
-						width : 120,
-						align : 'center',
-						templet : '#stateTpl'
-					},{
-						fixed : 'right',
-						title : '操作',
-						align : 'center',
-						width : 120,
-						toolbar : '#barDemo'
-					}
+				url : 'news/selectSome' //数据接口 
+				,
+				cols : [ [ //表头
+				{
+					field : 'nid',
+					title : 'ID',
+					align : 'center',
+					width : 120,
+					sort : true
+				}, {
+					field : 'title',
+					title : '标题',
+					align : 'center',
+					width : 120
+				}, {
+					field : 'picture',
+					title : '图片',
+					align : 'center',
+					width : 120
+				}, {
+					field : 'description',
+					title : '描述',
+					align : 'center',
+					width : 120
+				},
+				   {
+					fixed : 'right',
+					title : '操作',
+					align : 'center',
+					width : 120,
+					toolbar : '#barDemo'
+				}
 
-					] ],
+				] ],
 				page : true, //开启分页
 				limit : 10,
 				skin : 'line',
@@ -89,41 +86,31 @@
 				var data = obj.data;
 				if (obj.event === 'del') {
 					del(obj);
-				} else if (obj.event === 'selectOid') {
-					selectOid(obj);
+				} else if (obj.event === 'edit') {
+					edit(data);
 				}
 			});
 		});
 	</script>
 
 	<script type="text/html" id="barDemo">
-           	<a title="查看" lay-event="selectOid" style="color:#1E9FFF">
-				<i class="layui-icon">&#xe615;</i>
-			</a>
 			<a title="删除" lay-event="del" style="color:#FF5722">
 				<i class="layui-icon">&#xe640;</i>
 			</a>
 		</script>
 
- <script type="text/html" id="stateTpl">
-   {{ d.state }}
-</script> 
 	<script>
-         function selectOid(obj)
-         {
-        	 var data = obj.data;
-        
-        	 var oid=data.oid;
-             location.href="detail/selectOid?oid="+data.oid; 
-         }
+	
+	
+	
 		function del(obj) {
 			layer.confirm('真的删除行吗', function(index) {
 				var data = obj.data;
 				$.ajax({
-					url : "order/delOid",
+					url : "news/delNid",
 					type : "POST",
 					data : {
-						"oid" : data.oid
+						"nid" : data.nid
 					},
 					dataType : "json",
 					success : function(data) {
@@ -142,6 +129,19 @@
 				});
 			});
 		}
+
+
+		$('#search').on('click', function() {
+			layui.use([ 'table' ], function() {
+				var table = layui.table;
+				table.reload('tableId', {
+					where : {
+						keyword : $('#demoReload').val()
+					}
+				});
+			});
+		});
 	</script>
+	
 </body>
 </html>

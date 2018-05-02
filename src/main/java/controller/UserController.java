@@ -16,9 +16,11 @@ import net.sf.json.JSONObject;
 import com.github.pagehelper.PageInfo;
 
 import pojo.Cell;
+import pojo.Detail;
 import pojo.News;
 import pojo.Pager;
 import pojo.User;
+import service.DetailService;
 import service.NewsService;
 import service.UserService;
 import util.sendsms;
@@ -30,22 +32,28 @@ public class UserController {
 	private UserService userService;
 	@Autowired
     private NewsService newsService;
+	@Autowired
+	private DetailService detailService;
 	@RequestMapping("/home")
 	public String userHome(ModelMap map) throws Exception  {
-		
-		if(newsService.selectAll()==null)
-			return "error";
-		else
-		{
 		 ArrayList<News>  newsList=newsService.selectAll();
           map.addAttribute("newsList",newsList);
+          ArrayList<Detail> detailList=detailService.selectHot();
+          map.addAttribute("detailList",detailList);
 		return "home";
 		}
-	}
+	
 
 	@RequestMapping("/personInformation")
-	public String personInformation() {
-		
+	public String personInformation(HttpSession session,ModelMap map) {
+		Integer uid=0;
+		if (session.getAttribute("user") != null) {
+			User user = (User) session.getAttribute("user");
+			 uid = user.getUid();
+		}
+		User personal=userService.selectUid(uid);
+	System.out.println(personal.getUsername());
+        map.addAttribute("personal",personal);
 		return "personInformation";
 	}
 	
@@ -83,7 +91,7 @@ public class UserController {
 	
 	@RequestMapping("/personal")
 	public String personal() {
-
+		
 		return "personal";
 	}
 
@@ -115,7 +123,7 @@ public class UserController {
 		return json;
 	}
 
-	@RequestMapping("/delAll")
+	@RequestMapping("/delSome")
 	@ResponseBody
 	public int delAll(@RequestParam(value = "ids[]") int[] ids) throws Exception {
 		userService.delSome(ids);
@@ -140,10 +148,10 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/findAll")
+	@RequestMapping("/selectSome")
 	@ResponseBody
 	public Pager<User> findAll(Model model, int page, int limit, String keyword) throws Exception {
-		ArrayList<User> userList = userService.findAll(page, limit, keyword);
+		ArrayList<User> userList = userService.selectSome(page, limit, keyword);
 		PageInfo<User> pageInfo = new PageInfo<User>(userList);
 		// 计算总行数
 		int count = (int) pageInfo.getTotal();
@@ -223,9 +231,9 @@ public class UserController {
 		 session.removeAttribute("user");  
 		return "login";
 	}
+	
 	@RequestMapping("/lun")
-	public String lun(HttpSession session) {
-		
+	public String lun(HttpSession session) {	
 		return "lun";
 	}
 	

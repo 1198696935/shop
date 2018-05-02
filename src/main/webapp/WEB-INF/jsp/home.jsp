@@ -66,8 +66,7 @@
 	<div class="top-nav">
 		<div class="wrap clearfix">
 			<div class="fl clearfix nav-about">
-				<span>妈妈网
-				</span> <span class="sp">|</span> <span>客服热线：18818429757</span>
+				<span>妈妈网 </span> <span class="sp">|</span> <span>客服热线：18818429757</span>
 			</div>
 			<div class="login-info fr clearfix">
 				<div class="not-login clearfix">
@@ -91,11 +90,11 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="logo-cart-box">
 		<div class="wrap clearfix">
 			<a class="logo fl"> <img src="img/icon/logo.png" width="152"
-				height="65" title="小树熊，妈网官方商城">
+				height="65">
 			</a>
 
 			<div class="safety-cart fr clearfix">
@@ -119,15 +118,11 @@
 								<div class="hd">
 									<span class="icon-right"></span> <a
 										href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=397"
-										target="_blank">妈妈良品</a>
+										target="_blank">喂养用品</a>
 								</div>
 								<div id="submenu-0" class="popover">
 									<div class="link-list">
 										<a href="item/tid?tid=3" target="_Self" class="link-item">
-											<div class="pic-holder">
-												<img src="img/item/milk.jpg" title="小树熊，妈网官方商城" width="58"
-													height="58">
-											</div>
 											<p class="title">奶粉</p>
 										</a>
 									</div>
@@ -135,42 +130,49 @@
 							</li>
 							<li data-submenu-id="submenu-1">
 								<div class="hd">
-									<span class="icon-right"></span> <a
-										href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=34"
-										target="_blank">喂养用品</a>
+									<span class="icon-right"></span> <a href="item/tid?tid=6">尿裤湿巾</a>
 								</div>
 								<div id="submenu-1" class="popover">
 									<div class="link-list">
-										<a
-											href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=444"
-											target="_blank" class="link-item">
-											<div class="pic-holder">
-												<img
-													src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1476359444811915956.jpg"
-													title="小树熊，妈网官方商城" width="58" height="58">
-											</div>
-											<p class="title">哺乳护理</p>
+									<a class="link-item" href="item/tid?tid=6">					
+											<p class="title">婴儿尿裤</p>
+										</a> <a class="link-item">
+										
+											<p class="title">婴儿湿巾</p>
 										</a>
-
+										<a class="link-item">
+											<p class="title">拉拉裤</p>
+										</a>
 									</div>
 								</div>
+								
+								
 							</li>
 							<li data-submenu-id="submenu-2">
 								<div class="hd">
 									<span class="icon-right"></span> <a
 										href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=37"
-										target="_blank">宝宝洗护</a>
+										target="_blank">洗护用品</a>
 								</div>
 								<div id="submenu-2" class="popover">
 									<div class="link-list">
-										<a href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=86"
-											target="_blank" class="link-item">
-											<div class="pic-holder">
-												<img
-													src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1495792913435787688.jpg"
-													title="小树熊，妈网官方商城" width="58" height="58">
-											</div>
-											<p class="title">爽身/防晒</p>
+										<a  class="link-item">
+											<p class="title">宝宝护肤</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">洗发沐浴</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">奶瓶清洗</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">驱蚊防晒</p>
+										</a>
+										<a href="item/tid?tid=14" class="link-item">
+											<p class="title">洗澡用具</p>
+										</a>
+											<a  class="link-item">
+											<p class="title">口腔清洁</p>
 										</a>
 									</div>
 								</div>
@@ -180,78 +182,47 @@
 				</ul>
 			</div>
 		</div>
+
 		<!--轮播图 -->
 		<div id="banner" class="banner">
 			<ul class="banner_box">
-				<!--  <li style="opacity: 1; filter: alpha(opacity = 100);"><a href=""
-				style="background: url(img/1.jpeg) center top no-repeat"></a></li> -->
 				<c:forEach items="${newsList}" var="news">
 					<li style="opacity: 1; filter: alpha(opacity = 100);"><a
 						href="news/newsShow?nid=${news.nid}"
 						style="background: url(${news.picture}) center top no-repeat"></a></li>
 				</c:forEach>
-				<!--  <li style="opacity: 1; filter: alpha(opacity = 100);"><a href=""
-				style="background: url(img/1.jpeg) center top no-repeat"></a></li> -->
+
 			</ul>
 		</div>
-
-
-		<div class="wrap">
-			<div class="countdown-mod-2">
-				<dl class="sort-wrap">
-					<span>排序</span>
-					<dd class="sort-item up">
-
-						<a
-							href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1">默认</a>
-					</dd>
-					<dd class="sort-item">
-						<a
-							href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1&amp;sales=1">销量</a>
-					</dd>
-					<dd class="sort-item">
-						<a
-							href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1&amp;price=1">价格<span
-							class="sort-icon"></span></a>
-					</dd>
-					<dd class="sort-item">
-						<a
-							href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1&amp;discount=1">折扣<span
-							class="sort-icon"></span></a>
-					</dd>
-				</dl>
+		<br>
+		<br>
+		<div
+			class="  act-block act-pdb act-fl-common act-fl-2 act-fl-good4_1 ">
+			<div class="wrap">
+				<div class="block-title act-mrb">
+					<img class="lazy loaded"
+						data-src="https://cdn.xiaoshuxiong.com//images/201610/activity/5816e6eab92bf.jpg"
+						src="https://cdn.xiaoshuxiong.com//images/201610/activity/5816e6eab92bf.jpg"
+						style="display: block;">
+				</div>
 			</div>
-			<ul class="category-list clearfix mb-25">
-				<li class="mod-item"><a
-					href="https://www.xiaoshuxiong.com/product.php?id=36558"
-					class="goods-pic-title mb-10" target="_blank">
-						<div class="pic-holder mb-10">
-							<img
-								src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/0_thumb_P_1518167708251.jpg"
-								title="" width="233" height="233">
-						</div>
-						<p class="goods-title">妈妈良品 婴幼儿纱布印口水兜28cm*23cm 两条装</p>
-				</a>
-					<div class="price clearfix mb-10">
-						<span class="shop-price">￥29</span>
-					</div> <img
-					src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1518837093965010846.png"
-					title="" width="50" height="56" class="hanging "></li>
-				<li class="mod-item"><a
-					href="https://www.xiaoshuxiong.com/product.php?id=36557"
-					class="goods-pic-title mb-10" target="_blank">
-						<div class="pic-holder mb-10">
-							<img
-								src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/0_thumb_P_1518166803702.jpg"
-								title="" width="233" height="233">
-						</div>
-						<p class="goods-title">妈妈良品 婴幼儿纱布印花三角巾24cm*47cm 两条装</p>
-				</a>
-					<div class="price clearfix mb-10">
-						<span class="shop-price">￥36</span>
-					</div> <img
-					src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1518837093965010846.png"
-					title="" width="50" height="56" class="hanging "></li>
+		</div>
+		<br><br>
+		<div class="wrap">
+			<c:forEach items="${detailList}" var="detail">
+				<ul class="category-list clearfix mb-25">
+					<li class="mod-item"><a
+						href="item/selectIid?iid=${detail.iid}"
+						class="goods-pic-title mb-10" target="_blank">
+							<div class="pic-holder mb-10">
+								<img src="${detail.picture}" title="" width="233" height="233">
+							</div>
+							<p class="goods-title">${detail.title}</p>
+					</a>
+						<div class="price clearfix mb-10">
+							<span class="shop-price">${detail.price}</span>
+						</div> </li>
+			</c:forEach>
 			</ul>
 		</div>
 
@@ -271,7 +242,7 @@
 				<div class="copyright">
 					<a class="kx-logo" tabindex="-1" id="urlknet" target="_blank"
 						rel="nofollow"><img src="img/icon/kxlogo.gif" title="可信网站"></a>
-					<p>版权所有 @小树熊xiaoshuxiong.com 客服热线:18818429757</p>
+					<p>100+网站版权所有 © 2018-2018 客服热线:18818429757</p>
 				</div>
 			</div>
 		</div>

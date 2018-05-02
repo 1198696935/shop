@@ -40,8 +40,6 @@ public class AddressController {
 		return addressList;
 	}
 	
-
-	
 	@RequestMapping("/find")
 	@ResponseBody
 	public Pager<Address> find(HttpSession session,Model model,int page, int limit, String keyword) throws Exception {

@@ -20,8 +20,8 @@ public class sendsms {
 	    String content = new String("您的验证码是：" + mobile_code + "。请不要把验证码泄露给其他人。");
 
 		NameValuePair[] data = {
-				new NameValuePair("account", "C33135856"), 
-			    new NameValuePair("password", "2b99193d97e6c5e25c7edb432542b9a1"),
+				new NameValuePair("account", "C44632581"), 
+			    new NameValuePair("password", "4b47fca432af1549ad7fc69ca8daf4b7"),
 			    new NameValuePair("mobile", phone), 
 			    new NameValuePair("content", content),
 		};
@@ -36,9 +36,6 @@ public class sendsms {
 			String code = root.elementText("code");
 			String msg = root.elementText("msg");
 			String smsid = root.elementText("smsid");
-			System.out.println(code);
-			System.out.println(msg);
-			System.out.println(smsid);
 			 if("2".equals(code)){
 				System.out.println("短信提交成功");
 			}

@@ -14,4 +14,8 @@ public interface DetailDao {
 
 	@Select(" select * from detail where oid = #{oid} ")
 	ArrayList<Detail> selectOid(Integer oid);
+
+
+	ArrayList<Detail> selectHot();
+
 }

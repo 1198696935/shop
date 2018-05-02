@@ -5,5 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dao.ItemDao">
 <update id="update" parameterType="pojo.Cart">  
     update item set num=num-#{count} where iid=#{iid}
-</update>  
+</update> 
+
+<select id="selectSome"  resultType="pojo.Item">  
+  SELECT * FROM item where 1=1 <if test="keyword!=null">and title like '%${keyword}%'</if> 
+</select> 
+
+<select id="selectTitle"  resultType="pojo.Item">  
+  SELECT * FROM item where 1=1 <if test="title!=null">and title like '%${title}%'</if> 
+</select> 
 </mapper>

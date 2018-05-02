@@ -16,7 +16,7 @@
 <script charset="utf-8" src=kindeditor/lang/zh_CN.js"></script>
 <style>
 #center {
-	margin-left: 100px;
+	margin-left: 200px;
 	margin-top: 20px;
 	width: 600px;
 	height: 400px;
@@ -70,18 +70,19 @@
 		});
 
 		$("#add").click(function() {
-			alert("ddd");
+			editor.sync();
+			var content =$("#editor_id").val();//同步数据后可以直接取得textarea的value
+			alert(content);
 			$.ajax({
 				url : 'news/add',
 				type : 'post',
 				data : {
 					"title" : $("#ntitle").val(),
-					"description" : $("#editor_id").val()
+					"description" : content
 				},
 				dataType : "json",
 				success : function(data) {
-
-					layer.msg('商品上传成功');
+					layer.msg('头条上传成功');
 					window.location.reload();//刷新当前页面			
 				}
 

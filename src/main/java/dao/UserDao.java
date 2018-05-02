@@ -10,7 +10,7 @@ import pojo.User;
 
 public interface UserDao {
 
-	@Insert("insert into user(username,pwd,sex,phone,address,money) values(#{username},#{pwd},#{sex},#{phone},#{address},#{money})")
+	@Insert("insert into user(username,pwd,sex,phone,money) values(#{username},#{pwd},#{sex},#{phone},#{money})")
 	public int add(User user);
 
 	@Delete("delete from user where uid=#{uid}")
@@ -24,7 +24,7 @@ public interface UserDao {
 	public ArrayList<User> findAll();
 
 	@Select(" select * from user where username like '%${keyword}%'")
-	public ArrayList<User> findUsername(@Param(value = "keyword") String keyword);
+	public ArrayList<User> findSome(@Param(value = "keyword") String keyword);
 	
 	@Select(" select * from user where username = #{userName} and pwd = #{pwd}")
 	public User login(@Param("userName") String userName, @Param("pwd") String pwd);
@@ -40,4 +40,6 @@ public interface UserDao {
 	
 	@Update("update user set username = #{username}, pwd = #{pwd},sex=#{sex},phone=#{phone} where uid = #{uid}")
 	public int editUid(User user);
+
+	public ArrayList<User> selectSome(@Param("keyword") String keyword);
 }

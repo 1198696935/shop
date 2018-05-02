@@ -2,7 +2,9 @@ package dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import pojo.Cart;
@@ -16,12 +18,17 @@ public interface ItemDao {
     @Select(" select * from item where tid = #{tid} ")
 	public ArrayList<Item> selectTid(Integer tid);
 
-    @Select(" select * from item where title like concat('%',#{title},'%')")
-	public ArrayList<Item> selectTitle(String title);
+   /* @Select(" select * from item where title like concat('%',#{title},'%')")*/
+	public ArrayList<Item> selectTitle(@Param("title")String title);
 
     @Select(" select * from item where iid = #{iid} ")
 	public Item selectIid(String iid);
     
     public int  updateNum(Cart cart);
+
+	public ArrayList<Item> selectSome(@Param("keyword")String keyword);
+
+	@Delete("delete from item where iid=#{iid}")
+	public void delIid(int iid);
 
 }

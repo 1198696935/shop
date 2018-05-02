@@ -26,4 +26,15 @@ public class DetailServiceImpl implements DetailService {
 			return  detailList;
 	}
 
+	public ArrayList<Detail> selectSale() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Detail> selectHot() {
+		// TODO Auto-generated method stub
+		ArrayList<Detail> detailList = detailDao.selectHot();
+		return detailList;
+	}
+
 }

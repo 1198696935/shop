@@ -64,7 +64,7 @@
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6b8;</i>
-                    <cite>用户</cite>
+                    <cite>用户信息</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
@@ -102,7 +102,7 @@
         <div class="copyright">Copyright ©2018 Chen Xiaobo v2.3 All Rights Reserved</div>  
     </div>
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-    <script src="lib/layui/layui.js" charset="utf-8"></script>
+<script src="lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="js/xadmin.js"></script>
 </body>
 </html>

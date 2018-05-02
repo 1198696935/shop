@@ -10,4 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </foreach>  
 </delete>  
 
+<select id="selectSome"  resultType="pojo.User">  
+  SELECT * FROM user where 1=1 <if test="keyword!=null">and username like '%${keyword}%'</if> 
+</select> 
 </mapper>

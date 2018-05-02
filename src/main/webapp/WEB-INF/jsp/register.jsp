@@ -50,7 +50,7 @@
     </div>
     	    <div class="right">
 	      <span>已有账号?直接</span>
-	      <a href="/user/userLogin">登录</a>
+	      <a href="user/userLogin">登录</a>
 	    </div>
       </div>
 	</div>
@@ -225,7 +225,6 @@
 			},
 			dataType : "json",
 			success : function(data) {	
-				alert("data"+data);
 			 if(data==1)				 		
 					 ok2=true;			
 			 if(data==2)

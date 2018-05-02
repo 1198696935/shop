@@ -29,6 +29,12 @@ public class OrderController {
 			return "orderList";
 	}
 	
+	@RequestMapping("/orderVerify")
+	public String orderVerify() throws Exception {
+		System.out.println("dddddd");
+			return "orderVerify";
+	}
+	
 	@RequestMapping("/add")
 	@ResponseBody
 	public int addOrder(String orderData,HttpSession session) throws Exception {
@@ -64,7 +70,6 @@ public class OrderController {
 			User user = (User) session.getAttribute("user");
 			 uid = user.getUid();
 		}
-	   System.out.println("keyword"+keyword);
 		ArrayList<Order> orderList = orderService.select(uid,page, limit, keyword);
 		PageInfo<Order> pageInfo = new PageInfo<Order>(orderList);
 		// 计算总行数

@@ -9,8 +9,12 @@ public interface ItemService {
 
 	public  ArrayList<Item> selectTid(Integer tid);
 
-	public ArrayList<Item> selectTitle(int page, int limit, String title);
-
 	public Item selectIid(String iid);
+
+	public ArrayList<Item> selectSome(int page, int limit, String keyword);
+
+	public void delIid(int iid);
+
+	public ArrayList<Item> selectTitle(String title);
     
 }

@@ -29,21 +29,25 @@ public class ItemServiceImpl implements ItemService{
 			return itemList;		
 	}
 	
-	
-	public ArrayList<Item> selectTitle(int page, int limit, String title) {
-		// TODO Auto-generated method stub
-		PageHelper.startPage(page, limit);
-		if (title == null || title.isEmpty()) {
-			return null;
-		} 
-		else
-			return itemDao.selectTitle(title);
-		
-	}
-	
 	public Item selectIid(String iid) {
 		// TODO Auto-generated method stub
 		Item item=itemDao.selectIid(iid);
 		return item;
+	}
+	
+	public ArrayList<Item> selectSome(int page, int limit, String keyword) {
+		// TODO Auto-generated method stub
+		return itemDao.selectSome(keyword);
+	}
+	public void delIid(int iid) {
+		// TODO Auto-generated method stub
+		
+	 itemDao.delIid(iid);
+		
+		
+	}
+	public ArrayList<Item> selectTitle(String title) {
+		// TODO Auto-generated method stub
+		return itemDao.selectTitle(title);
 	}
 }

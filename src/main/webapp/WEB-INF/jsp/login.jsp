@@ -68,9 +68,6 @@
 
 
 					<div class="options">
-						<div class="left">
-							<a href="" target="_blank" class="set_password">忘记密码</a>
-						</div>
 						<div class="right">
 							<a href="user/register" target="_blank" class="sign_in">立即注册</a>
 						</div>

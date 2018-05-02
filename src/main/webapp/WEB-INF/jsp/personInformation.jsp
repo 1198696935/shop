@@ -24,27 +24,22 @@
   <li class="layui-timeline-item">
     <i class="layui-icon layui-timeline-axis"></i>
     <div class="layui-timeline-content layui-text">
-      <div class="layui-timeline-title" >用户名：${user.username}</div>
+      <div class="layui-timeline-title" >用户名：${personal.username}</div>
     </div>
   </li>
   <li class="layui-timeline-item">
     <i class="layui-icon layui-timeline-axis"></i>
     <div class="layui-timeline-content layui-text">
-      <div class="layui-timeline-title">性别： ${user.sex}</div>
+      <div class="layui-timeline-title">性别： ${personal.sex}</div>
     </div>
   </li>
   <li class="layui-timeline-item">
     <i class="layui-icon layui-timeline-axis"></i>
     <div class="layui-timeline-content layui-text">
-      <div class="layui-timeline-title" >手机号码：${user.phone}</div>
+      <div class="layui-timeline-title" >手机号码：${personal.phone}</div>
     </div>
   </li>
-  <li class="layui-timeline-item">
-    <i class="layui-icon layui-timeline-axis"></i>
-    <div class="layui-timeline-content layui-text">
-      <div class="layui-timeline-title" >剩余金额：${user.money}</div>
-    </div>
-  </li>
+ 
   <li class="layui-timeline-item">
     <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
     <div class="layui-timeline-content layui-text">
@@ -53,17 +48,19 @@
   </li>
 
 </ul>
-  <button class="layui-btn" id=editUid>修改信息</button> <button class="layui-btn layui-btn-normal" id="editPwd">修改密码</button>      
+  <button class="layui-btn" id=editUid>修改信息</button>
  </div>
-<script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+
 <script>
 $('#editUid').on('click', function() {
-	 var username="${user.username}";
+    var username="${user.username}";
 	var phone="${user.phone}";
 	var pwd="${user.pwd}";
+	var sex="${user.sex}";
 	$("#username").val(username);
 	$("#phone").val(phone);
 	$("#pwd").val(pwd);
+	$("#sex").val(sex);
 	var uid="${user.uid}";
 	layer.open({
 		type: 1, //弹窗类型
@@ -83,7 +80,7 @@ $('#editUid').on('click', function() {
 					"uid":uid,
 					"username": $("#username").val(),
 					"phone": $("#phone").val(),
-					"sex": $('input[name="sex"]:checked').val(),
+					"sex": $("#sex").val(),
 					"pwd":$("#pwd").val()
 				},
 				dataType: "json",
@@ -98,7 +95,7 @@ $('#editUid').on('click', function() {
 </script>
 
 
-</body>
+
 
 <div id="modal" class="x-body" style="display:none">
 		<div class="layui-form-item">
@@ -124,15 +121,14 @@ $('#editUid').on('click', function() {
 					<input id="pwd"   class="layui-input">
 				</div>
 			</div>
-		</div>
-
-    	<div class="layui-form-item" pane="">
+		</div> 
+		<div class="layui-form-item">
 			<label class="layui-form-label">性别</label>
-			<div class="layui-input-block" id="sex">
-				<input id="man" type="radio" name="sex" value="男" title="男" >
-				<input id="woman" type="radio" name="sex" value="女" title="女">
+			<div class="layui-input-inline">
+				<input id="sex" type="text" required="" lay-verify="nikename"
+					autocomplete="off" class="layui-input">
 			</div>
-		</div>
-         
+		</div>   
 </div>
+</body>
 </html>

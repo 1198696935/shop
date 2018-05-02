@@ -252,8 +252,7 @@
 		             //计算邮费
 		              $("#total-price").text($(".total-price").text());
 		             $("#total-count").text($(".total-count").text());
-		            var totalPrice= $("#total-price").text();    
-		            alert("totalPrice"+totalPrice);
+		            var totalPrice= parseFloat($("#total-price").text());     
 		            if(totalPrice<88&&totalPrice>0)
 		            	{
 		            	    $("#expressPrice").text('10');
@@ -263,7 +262,7 @@
 		            	    $("#expressPrice").text('0');
 		            	}
 		             //得出最终价格
-		             var expressPrice=parseFloat($("#expressPrice").text());       
+		             var expressPrice=parseFloat($("#expressPrice").text());   
 		             var finalPrice=totalPrice+expressPrice;
 		             
 		             $("#finalPrice").text(finalPrice);
@@ -294,7 +293,6 @@
 				       order.phone=$("#phoneLabel").text();	
 				       order.payment=$("#finalPrice").text();
 				       order.uid=uid;
-				       alert(JSON.stringify(order));
 					 $.ajax({  
 						 dataType: "json",
 						 type:"POST",  
@@ -362,14 +360,12 @@
 							var accountText = $(this).parent().parent()
 									.parent().next().find(".account").text(
 											account);
-							alert(account);
+						
 							var flag=$(this).parent().parent().parent().parent().find(".gc").is(":checked");	
 							if(flag)
 								{
 								   var  totalPrice=parseFloat($(".total-price").text())+parseFloat(price);
 								   var  totalCount=parseInt($(".total-count").text())+1;
-								 
-								   alert("totalCount"+totalCount);
 								   $(".total-price").text(totalPrice);
 								   $(".total-count").text(totalCount);
 								}

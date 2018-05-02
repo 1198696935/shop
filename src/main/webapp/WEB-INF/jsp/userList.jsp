@@ -39,7 +39,7 @@
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'user/findAll' //数据接口 
+				url : 'user/selectSome' //数据接口 
 				,
 				cols : [ [ //表头
 				{
@@ -70,11 +70,6 @@
 				}, {
 					field : 'phone',
 					title : '手机号码',
-					align : 'center',
-					width : 120
-				}, {
-					field : 'money',
-					title : '金额',
 					align : 'center',
 					width : 120
 				}, {
@@ -137,7 +132,7 @@
 													ids.push(obj.uid);
 												});
 												$.ajax({
-													url : "user/delAll",
+													url : "user/delSome",
 													type : "POST",
 
 													data : {
@@ -161,7 +156,7 @@
 				closeBtn : 1, //是否显示关闭按钮
 				shadeClose : true, //显示模态窗口
 				skin : 'layui-layer-rim', //加上边框
-				area : [ '550px', '440px' ], //宽高
+				area : [ '550px', '380px' ], //宽高
 				content : $('#modal'),
 				yes : function(index, layero) {
 					$.ajax({
@@ -172,14 +167,33 @@
 							"pwd" : $("#pwd").val(),
 							"sex" : $('input[name="sex"]:checked').val(),
 							"phone" : $("#phone").val(),
-							"address" : $("#address").val(),
-							"money" : $("#money").val()
 						},
 						dataType : "json",
-						success : function(data) {				
-							 layer.close(index); 
-							  location.reload(); 
-						
+						success : function(data) {
+
+							if (data == 1) {
+								layer.close(index);
+								layer.msg("增加成功", {
+									icon : 6,
+									time : 1000
+								}, function() {
+									layui.use('table', function() {
+										var table = layui.table;
+										table.reload('tableId', {
+											page : {
+												curr : 1
+											}
+										})
+									})
+								})
+							}
+
+							else {
+								layer.msg("增加失败", {
+									icon : 5
+								});
+							}
+
 						}
 					});
 				}
@@ -227,32 +241,49 @@
 			$("#address").val(data.address);
 			$("#money").val(data.money);
 			layer.open({
-				type: 1, //弹窗类型
-				title: '用户信息', //显示标题 
-				btn: '提交',
-				btnAlign: 'c',
-				closeBtn: 1, //是否显示关闭按钮
-				shadeClose: true, //显示模态窗口
-				skin: 'layui-layer-rim', //加上边框
-				area: ['550px', '440px'], //宽高
-				content: $('#modal'),
-				yes: function(index, layero) {
+				type : 1, //弹窗类型
+				title : '用户信息', //显示标题 
+				btn : '提交',
+				btnAlign : 'c',
+				closeBtn : 1, //是否显示关闭按钮
+				shadeClose : true, //显示模态窗口
+				skin : 'layui-layer-rim', //加上边框
+				area : [ '550px', '440px' ], //宽高
+				content : $('#modal'),
+				yes : function(index, layero) {
 					$.ajax({
-						url: "user/edit",
-						type: "POST",
-						data: {
-							"uid": uid,
-							"username": $("#username").val(),
-							"pwd": $("#pwd").val(),
-							"sex": $('input[name="sex"]:checked').val(),
-							"phone": $("#phone").val(),
-							"address": $("#address").val(),
-							"money": $("#money").val()
+						url : "user/edit",
+						type : "POST",
+						data : {
+							"uid" : uid,
+							"username" : $("#username").val(),
+							"pwd" : $("#pwd").val(),
+							"sex" : $('input[name="sex"]:checked').val(),
+							"phone" : $("#phone").val(),
+							"money" : $("#money").val()
 						},
-						dataType: "json",
-						success: function(data) {
-							layer.close(index);
-							location.reload();
+						dataType : "json",
+						success : function(data) {
+							if (data == 1) {
+								layer.close(index);
+								layer.msg("编辑成功", {
+									icon : 6,
+									time : 1000
+								}, function() {
+									layui.use('table', function() {
+										var table = layui.table;
+										table.reload('tableId', {
+											page : {
+												curr : 1
+											}
+										})
+									})
+								})
+							} else {
+								layer.msg("编辑失败", {
+									icon : 5
+								});
+							}
 						}
 					});
 				}
@@ -271,9 +302,9 @@
 		});
 	</script>
 </body>
-<div id="modal" class="x-body" style="display:none">
+<div id="modal" class="x-body" style="display: none">
 
-	<form class="layui-form" >
+	<form class="layui-form">
 		<div class="layui-form-item">
 			<label class="layui-form-label">用户名 </label>
 			<div class="layui-input-inline">
@@ -294,7 +325,7 @@
 		<div class="layui-form-item" pane="">
 			<label class="layui-form-label">性别</label>
 			<div class="layui-input-block" id="sex">
-				<input id="man" type="radio" name="sex" value="男" title="男" >
+				<input id="man" type="radio" name="sex" value="男" title="男">
 				<input id="woman" type="radio" name="sex" value="女" title="女">
 			</div>
 		</div>
@@ -309,20 +340,13 @@
 			</div>
 		</div>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">地址</label>
-			<div class="layui-input-inline">
-				<input id="address" type="text" name="money" lay-verify="money"
-					placeholder="请输入" autocomplete="off" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
+		<!-- <div class="layui-form-item">
 			<label for="L_username" class="layui-form-label">金额</label>
 			<div class="layui-input-inline">
 				<input id="money" type="text" required="" lay-verify="nikename"
 					autocomplete="off" class="layui-input">
 			</div>
-		</div>
+		</div> -->
 	</form>
 
 </div>

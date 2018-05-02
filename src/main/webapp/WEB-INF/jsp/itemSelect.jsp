@@ -131,99 +131,88 @@ $(function(){
 	</div>
 
 	<div class="main-nav">
-		<div class="main-nav-wrap">
-			<ul class="nav-list">
-				<li class="nav-item dropdown-box clearfix"><span
-					class="icon-category"></span> <a href="javascript://"
-					class="dropdown-toggle nav-url" data-toggle="dropdown">商品分类</a> <span
-					class="icon-arrow-down"></span>
-					<ul class="dropdown-menu" role="menu">
-						<li data-submenu-id="submenu-0">
-							<div class="hd">
-								<span class="icon-right"></span> <a
-									href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=397"
-									target="_blank">妈妈良品</a>
-							</div>
-							<div id="submenu-0" class="popover">
-								<div class="link-list">
-									<a href="item/tid?tid=3" target="_blank" class="link-item">
-										<div class="pic-holder">
-											<img src="img/item/milk.jpg" title="小树熊，妈网官方商城" width="58"
-												height="58">
-										</div>
-										<p class="title">奶粉</p>
-									</a>
+			<div class="main-nav-wrap">
+				<ul class="nav-list">
+					<li class="nav-item dropdown-box clearfix"><span
+						class="icon-category"></span> <a href="javascript://"
+						class="dropdown-toggle nav-url" data-toggle="dropdown">商品分类</a> <span
+						class="icon-arrow-down"></span>
+						<ul class="dropdown-menu" role="menu">
+							<li data-submenu-id="submenu-0">
+								<div class="hd">
+									<span class="icon-right"></span> <a
+										href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=397"
+										target="_blank">喂养用品</a>
 								</div>
-							</div>
-						</li>
-						<li data-submenu-id="submenu-1">
-							<div class="hd">
-								<span class="icon-right"></span> <a
-									href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=34"
-									target="_blank">喂养用品</a>
-							</div>
-							<div id="submenu-1" class="popover">
-								<div class="link-list">
-									<a href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=444"
-										target="_blank" class="link-item">
-										<div class="pic-holder">
-											<img
-												src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1476359444811915956.jpg"
-												title="小树熊，妈网官方商城" width="58" height="58">
-										</div>
-										<p class="title">哺乳护理</p>
-									</a>
-
+								<div id="submenu-0" class="popover">
+									<div class="link-list">
+										<a href="item/tid?tid=3" target="_Self" class="link-item">
+											<p class="title">奶粉</p>
+										</a>
+									</div>
 								</div>
-							</div>
-						</li>
-						<li data-submenu-id="submenu-2">
-							<div class="hd">
-								<span class="icon-right"></span> <a
-									href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=37"
-									target="_blank">宝宝洗护</a>
-							</div>
-							<div id="submenu-2" class="popover">
-								<div class="link-list">
-									<a href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=86"
-										target="_blank" class="link-item">
-										<div class="pic-holder">
-											<img
-												src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1495792913435787688.jpg"
-												title="小树熊，妈网官方商城" width="58" height="58">
-										</div>
-										<p class="title">爽身/防晒</p>
-									</a>
+							</li>
+							<li data-submenu-id="submenu-1">
+								<div class="hd">
+									<span class="icon-right"></span> <a href="item/tid?tid=6">尿裤湿巾</a>
 								</div>
-							</div>
-						</li>
-					</ul></li>
-				<li class="nav-item"><a class="nav-url" href="user/home">首页</a></li>
-			</ul>
+								<div id="submenu-1" class="popover">
+									<div class="link-list">
+										<a href="item/tid?tid=6" class="link-item">		
+											<p class="title">婴儿尿裤</p>
+										</a> <a class="link-item">
+										
+											<p class="title">婴儿湿巾</p>
+										</a>
+										<a class="link-item">
+											<p class="title">拉拉裤</p>
+										</a>
+									</div>
+								</div>
+								
+								
+							</li>
+							<li data-submenu-id="submenu-2">
+								<div class="hd">
+									<span class="icon-right"></span> <a
+										href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=37"
+										target="_blank">洗护用品</a>
+								</div>
+								<div id="submenu-2" class="popover">
+									<div class="link-list">
+										<a  class="link-item">
+											<p class="title">宝宝护肤</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">洗发沐浴</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">奶瓶清洗</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">驱蚊防晒</p>
+										</a>
+										<a href="item/tid?tid=14" class="link-item">
+											<p class="title">洗澡用具</p>
+										</a>
+											<a  class="link-item">
+											<p class="title">口腔清洁</p>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+					<li class="nav-item"><a class="nav-url" href="user/home">首页</a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
+	
+	<br><br>
 	<div class="wrap">
-
 		<div class="countdown-mod-2">
 			<dl class="sort-wrap">
-				<dt>排序:</dt>
 				<dd class="sort-item up">
-					<a
-						href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1">默认</a>
-				</dd>
-				<dd class="sort-item">
-					<a
-						href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1&amp;sales=1">销量</a>
-				</dd>
-				<dd class="sort-item">
-					<a
-						href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1&amp;price=1">价格<span
-						class="sort-icon"></span></a>
-				</dd>
-				<dd class="sort-item">
-					<a
-						href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423&amp;page=1&amp;discount=1">折扣<span
-						class="sort-icon"></span></a>
+					<a>默认</a>
 				</dd>
 			</dl>
 		</div>
@@ -294,7 +283,8 @@ $(function(){
 	<script>
 		$("#searchBtn").click(function() {
 			var title = $("#searchInput").val();
-			location.href = "item/selectTitle?title=" + title;
+			alert(title);
+			location.href = "item/selectTitle?title="+title;
 			$("#searchInput").val("");
 		});
 

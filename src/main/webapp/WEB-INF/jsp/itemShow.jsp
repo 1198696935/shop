@@ -113,79 +113,81 @@
 		</div>
 	</div>
 	<div class="main-nav">
-		<div class="main-nav-wrap">
-			<ul class="nav-list">
-				<li class="nav-item dropdown-box clearfix"><span
-					class="icon-category"></span> <a href="javascript://"
-					class="dropdown-toggle nav-url" data-toggle="dropdown">商品分类</a> <span
-					class="icon-arrow-down"></span>
-					<ul class="dropdown-menu" role="menu">
-						<li data-submenu-id="submenu-0">
-							<div class="hd">
-								<span class="icon-right"></span> <a
-									href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=397"
-									target="_blank">妈妈良品</a>
-							</div>
-							<div id="submenu-0" class="popover">
-								<div class="link-list">
-									<a href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=423"
-										target="_blank" class="link-item">
-										<div class="pic-holder">
-											<img
-												src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1464855191781825809.jpg"
-												title="小树熊，妈网官方商城" width="58" height="58">
-										</div>
-										<p class="title">婴装/童装/棉品</p>
-									</a>
+			<div class="main-nav-wrap">
+				<ul class="nav-list">
+					<li class="nav-item dropdown-box clearfix"><span
+						class="icon-category"></span> <a href="javascript://"
+						class="dropdown-toggle nav-url" data-toggle="dropdown">商品分类</a> <span
+						class="icon-arrow-down"></span>
+						<ul class="dropdown-menu" role="menu">
+							<li data-submenu-id="submenu-0">
+								<div class="hd">
+									<span class="icon-right"></span> <a
+										href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=397"
+										target="_blank">喂养用品</a>
 								</div>
-							</div>
-						</li>
-						<li data-submenu-id="submenu-1">
-							<div class="hd">
-								<span class="icon-right"></span> <a
-									href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=34"
-									target="_blank">喂养用品</a>
-							</div>
-							<div id="submenu-1" class="popover">
-								<div class="link-list">
-									<a href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=444"
-										target="_blank" class="link-item">
-										<div class="pic-holder">
-											<img
-												src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1476359444811915956.jpg"
-												title="小树熊，妈网官方商城" width="58" height="58">
-										</div>
-										<p class="title">哺乳护理</p>
-									</a>
-
+								<div id="submenu-0" class="popover">
+									<div class="link-list">
+										<a href="item/tid?tid=3" target="_Self" class="link-item">
+											<p class="title">奶粉</p>
+										</a>
+									</div>
 								</div>
-							</div>
-						</li>
-						<li data-submenu-id="submenu-2">
-							<div class="hd">
-								<span class="icon-right"></span> <a
-									href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=37"
-									target="_blank">宝宝洗护</a>
-							</div>
-							<div id="submenu-2" class="popover">
-								<div class="link-list">
-									<a href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=86"
-										target="_blank" class="link-item">
-										<div class="pic-holder">
-											<img
-												src="./婴装_童装_棉品_妈妈良品_妈妈良品_妈妈网官方自营母婴品牌_files/1495792913435787688.jpg"
-												title="小树熊，妈网官方商城" width="58" height="58">
-										</div>
-										<p class="title">爽身/防晒</p>
-									</a>
+							</li>
+							<li data-submenu-id="submenu-1">
+								<div class="hd">
+									<span class="icon-right"></span> <a href="item/tid?tid=6">尿裤湿巾</a>
 								</div>
-							</div>
-						</li>
-					</ul></li>
-				<li class="nav-item"><a class="nav-url" href="user/home">首页</a></li>
-			</ul>
+								<div id="submenu-1" class="popover">
+									<div class="link-list">
+										<a class="link-item" href="item/tid?tid=6">				
+											<p class="title">婴儿尿裤</p>
+										</a> <a class="link-item">
+										
+											<p class="title">婴儿湿巾</p>
+										</a>
+										<a class="link-item">
+											<p class="title">拉拉裤</p>
+										</a>
+									</div>
+								</div>
+								
+								
+							</li>
+							<li data-submenu-id="submenu-2">
+								<div class="hd">
+									<span class="icon-right"></span> <a
+										href="https://www.xiaoshuxiong.com/cat_goods.php?cat_id=37"
+										target="_blank">洗护用品</a>
+								</div>
+								<div id="submenu-2" class="popover">
+									<div class="link-list">
+										<a  class="link-item">
+											<p class="title">宝宝护肤</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">洗发沐浴</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">奶瓶清洗</p>
+										</a>
+										<a  class="link-item">
+											<p class="title">驱蚊防晒</p>
+										</a>
+										<a href="item/tid?tid=14" class="link-item">
+											<p class="title">洗澡用具</p>
+										</a>
+											<a  class="link-item">
+											<p class="title">口腔清洁</p>
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+					<li class="nav-item"><a class="nav-url" href="user/home">首页</a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
 
 	<div class="g-content">
         <br>
@@ -238,14 +240,6 @@
 
 					<form action="cart.php" method="post" onsubmit="return false;"
 						id="J_attrWrap">
-						<dl class="info-item J_attrWrap none">
-							<dt class="item-hd J_attrName">
-								<span>库存</span> :
-							</dt>
-							<dd class="item-bd clearfix J_attrList">
-								<span class="size-prop J_sku selected">${item.num}</span>
-							</dd>
-						</dl>
 						<dl class="info-item">
 							<dt class="item-hd">数量 :</dt>
 							<dd class="item-bd clearfix">
@@ -291,64 +285,23 @@
 				<div class="fl hot-recommend">
 					<div class="hd">热卖推荐</div>
 					<ul class="bd">
-						<li class="goods-item"><a href="product.php?id=33771"
+					<c:forEach items="${detailList}" var="detail">
+						<li class="goods-item"><a href="item/selectIid?iid=${detail.iid}"
 							target="_blank">
 								<div class="pic-holder">
 									<img class="J_lazyImg loaded"
-										data-src="https://cdn.xiaoshuxiong.com/images/201801/goods_img/0_P_1516938436231.jpg"
+										data-src="${detail.picture}"
 										width="168" height="168" alt=""
-										src="https://cdn.xiaoshuxiong.com/images/201801/goods_img/0_P_1516938436231.jpg"
+										src="${detail.picture}"
 										style="display: inline;">
 								</div>
-								<p class="goods-title">每天补充VC</p>
+								<p class="goods-title">${detail.title}</p>
 						</a>
 
 							<p>
-								<span class="shop-price">￥18.9</span> <span class="market-price">￥25.00</span>
+								<span class="shop-price">${detail.price}</span> 
 							</p></li>
-						<li class="goods-item"><a href="product.php?id=33772"
-							target="_blank">
-								<div class="pic-holder">
-									<img class="J_lazyImg loaded"
-										data-src="https://cdn.xiaoshuxiong.com/images/201703/goods_img/0_P_1490058650109.jpg"
-										width="168" height="168" alt=""
-										src="https://cdn.xiaoshuxiong.com/images/201703/goods_img/0_P_1490058650109.jpg"
-										style="display: inline;">
-								</div>
-								<p class="goods-title">辅食制作神器</p>
-						</a>
-
-							<p>
-								<span class="shop-price">￥35</span> <span class="market-price">￥139.00</span>
-							</p></li>
-						<li class="goods-item"><a href="product.php?id=29524"
-							target="_blank">
-								<div class="pic-holder g-imgBg">
-									<img class="J_lazyImg"
-										data-src="https://cdn.xiaoshuxiong.com/images/201801/goods_img/0_P_1517297730371.jpg"
-										width="168" height="168" alt=""
-										src="https://static.xiaoshuxiong.com/mobile/dist/images/img_error.png">
-								</div>
-								<p class="goods-title">聚拢不压胸</p>
-						</a>
-
-							<p>
-								<span class="shop-price">￥89</span> <span class="market-price">￥239.00</span>
-							</p></li>
-						<li class="goods-item"><a href="product.php?id=22485"
-							target="_blank">
-								<div class="pic-holder g-imgBg">
-									<img class="J_lazyImg"
-										data-src="https://cdn.xiaoshuxiong.com/images/201701/goods_img/0_P_1484289369776.jpg"
-										width="168" height="168" alt=""
-										src="https://static.xiaoshuxiong.com/mobile/dist/images/img_error.png">
-								</div>
-								<p class="goods-title">买一送一</p>
-						</a>
-
-							<p>
-								<span class="shop-price">￥39</span> <span class="market-price">￥68.00</span>
-							</p></li>
+							</c:forEach>
 					</ul>
 				</div>
 			</div>

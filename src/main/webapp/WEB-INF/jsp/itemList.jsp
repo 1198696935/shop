@@ -23,10 +23,8 @@
 <body>
 	<div class="x-body">
 		<xblock>
-		<button class="layui-btn" onclick="add();">
-			<i class="layui-icon"></i>添加
-		</button>
-		<div style="float: right; margin-right: 200px">
+		
+		<div style=" margin-right: 200px">
 			<div class="layui-inline">
 				<input class="layui-input" name="keyword" id="demoReload"
 					autocomplete="off">
@@ -43,44 +41,44 @@
 			var table = layui.table;
 			table.render({
 				elem : '#tableId',
-				url : 'address/find' //数据接口 
+				url : 'item/selectSome' //数据接口 
 				,
 				cols : [ [ //表头
 				{
 					type : 'checkbox',
 					fixed : 'left'
 				}, {
-					field : 'aid',
+					field : 'iid',
 					title : 'ID',
 					align : 'center',
 					width : 120,
 					sort : true
 				}, {
-					field : 'username',
-					title : '用户名',
+					field : 'title',
+					title : '标题',
 					align : 'center',
 					width : 120
 				}, {
-					field : 'phone',
-					title : '手机',
+					field : 'description',
+					title : '描述',
 					align : 'center',
 					width : 120
-				}, {
-					field : 'area',
-					title : '地区',
+				}, {field: 'picture',title: '图片',height: 150,style:'height:100%;max-width:100%;',templet:'<div><img src="{{ d.picture}}"></div>'
+				},{
+					field : 'num',
+					title : '库存数量',
 					align : 'center',
-					width : 120
+					width : 160
 				}, {
-					field : 'site',
-					title : '详细地址',
+					field : 'price',
+					title : '价格',
 					align : 'center',
-					width : 240
-				},
-				   {
+					width : 160
+				}, {
 					fixed : 'right',
 					title : '操作',
 					align : 'center',
-					width : 120,
+					width : 160,
 					toolbar : '#barDemo'
 				}
 
@@ -104,7 +102,7 @@
 	</script>
 
 	<script type="text/html" id="barDemo">
-           <a title="编辑" lay-event="edit" style="color:#1E9FFF">
+	    <a title="编辑" lay-event="edit" style="color:#1E9FFF">
 				<i class="layui-icon">&#xe642;</i>
 			</a>
 			<a title="删除" lay-event="del" style="color:#FF5722">
@@ -116,7 +114,7 @@
 	function add() {
 		layer.open({
 			type: 1, //弹窗类型
-			title: '增加地址', //显示标题 
+			title: '用户信息', //显示标题 
 			btn: '提交',
 			btnAlign: 'c',
 			closeBtn: 1, //是否显示关闭按钮
@@ -153,10 +151,10 @@
 			layer.confirm('真的删除行吗', function(index) {
 				var data = obj.data;
 				$.ajax({
-					url : "address/delAid",
+					url : "item/delIid",
 					type : "POST",
 					data : {
-						"aid" : data.aid
+						"iid" : data.iid
 					},
 					dataType : "json",
 					success : function(data) {
@@ -183,7 +181,7 @@
 			$("#site").val(data.site);
 			layer.open({
 				type: 1, //弹窗类型
-				title: '修改地址', //显示标题 
+				title: '用户信息', //显示标题 
 				btn: '提交',
 				btnAlign: 'c',
 				closeBtn: 1, //是否显示关闭按钮
@@ -215,8 +213,6 @@
 				}
 			});
 		}
-		
-		
 
 		$('#search').on('click', function() {
 			layui.use([ 'table' ], function() {

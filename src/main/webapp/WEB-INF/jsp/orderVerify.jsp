@@ -97,6 +97,9 @@
 	</script>
 
 	<script type="text/html" id="barDemo">
+    	 <a title="确认" lay-event="selectOid" style="color:#1E9FFF">
+				<i class="layui-icon">&#xe618;</i>
+			</a>
            	<a title="查看" lay-event="selectOid" style="color:#1E9FFF">
 				<i class="layui-icon">&#xe615;</i>
 			</a>
@@ -114,6 +117,7 @@
         	 var data = obj.data;
         
         	 var oid=data.oid;
+        	 alert(oid);
              location.href="detail/selectOid?oid="+data.oid; 
          }
 		function del(obj) {

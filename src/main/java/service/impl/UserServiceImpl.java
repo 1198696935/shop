@@ -50,15 +50,6 @@ public class UserServiceImpl implements UserService {
 			return false;
 	}
 
-	public ArrayList<User> findAll(int page, int limit, String keyword) {
-		// TODO Auto-generated method stub
-		PageHelper.startPage(page, limit);
-		if (keyword == null || keyword.isEmpty()) {
-			return userDao.findAll();
-		} else
-			return userDao.findUsername(keyword);
-	}
-
 	public User login(String userName, String pwd) {
 		// TODO Auto-generated method stub
 		return  userDao.login(userName, pwd);
@@ -81,5 +72,12 @@ public class UserServiceImpl implements UserService {
 	public User selectUid(Integer uid) {
 		// TODO Auto-generated method stub
 		return userDao.selectUid(uid);
+	}
+
+
+	public ArrayList<User> selectSome(int page, int limit, String keyword) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(page, limit);
+		return userDao.selectSome(keyword);
 	}
 }

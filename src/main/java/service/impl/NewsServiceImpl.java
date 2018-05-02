@@ -27,5 +27,12 @@ public class NewsServiceImpl implements NewsService {
 		return newsDao.selectNid(nid);
 	
 	}
-
+	public ArrayList<News> selectSome(int page, int limit, String keyword) {
+		// TODO Auto-generated method stub
+		return newsDao.selectSome(keyword);
+	}
+	public void delNid(int nid) {
+		// TODO Auto-generated method stub
+		newsDao.delNid(nid);		
+	}
 }
