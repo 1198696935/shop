@@ -16,14 +16,11 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminDao adminDao;
 
-	public boolean login(String adminName, String pwd) {
+	public Admin login(String adminName, String pwd) {
 		// TODO Auto-generated method stub
 
 		Admin admin = adminDao.login(adminName, pwd);
-		if (admin != null)
-			return true;
-		else
-			return false;
+		return admin;
 	}
 
 	public ArrayList<Admin> findAll() {

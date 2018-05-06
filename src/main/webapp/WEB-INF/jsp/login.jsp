@@ -68,6 +68,9 @@
 
 
 					<div class="options">
+					<div class="left">
+							<a href="admin/adminLogin" target="_blank" class="sign_in">管理员登录</a>
+						</div>
 						<div class="right">
 							<a href="user/register" target="_blank" class="sign_in">立即注册</a>
 						</div>

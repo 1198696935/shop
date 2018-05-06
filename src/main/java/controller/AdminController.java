@@ -19,9 +19,8 @@ public class AdminController {
 	@ResponseBody
 	public JSONObject login(String adminName, String pwd, HttpSession session) throws Exception {
 		JSONObject json = new JSONObject();
-		if (adminService.login(adminName, pwd)) {
+		if (adminService.login(adminName, pwd)!=null) {
 			session.setAttribute("adminName", adminName);
-
 			json.put("msg", "1");
 		} else
 			json.put("msg", "0");
@@ -46,6 +45,6 @@ public class AdminController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		 session.removeAttribute("adminName");  
-		return "login";
+		return "adminLogin";
 	}
 }

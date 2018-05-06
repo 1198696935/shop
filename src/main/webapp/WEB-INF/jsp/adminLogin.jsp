@@ -55,12 +55,14 @@
 					},
 					dataType : "json",
 					success : function(data) {
-						if (data.msg = '1')
+						if (data.msg=='1')
 							{
-							location.href = "admin/main";
+							  location.href = "main";
 							}
 						else
-							alert("登录失败");
+							{
+						    	alert("登录失败");
+							}
 					}
 				});
 			});

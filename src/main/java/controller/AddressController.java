@@ -35,7 +35,7 @@ public class AddressController {
 	public ArrayList<Address>  selectAll(int uid) throws Exception {
 		ArrayList<Address> addressList = addressService.selectAll(uid);
 		for (Address i : addressList) {
-			System.out.println(i.toString());
+		
 		}
 		return addressList;
 	}
@@ -48,7 +48,7 @@ public class AddressController {
 			User user= (User) session.getAttribute("user");
 			uid=user.getUid();
 		}
-		System.out.println(keyword);
+	
 		ArrayList<Address> addressList = addressService.find(uid,page,limit, keyword);
 		PageInfo<Address> pageInfo = new PageInfo<Address>(addressList);
 		// 计算总行数
